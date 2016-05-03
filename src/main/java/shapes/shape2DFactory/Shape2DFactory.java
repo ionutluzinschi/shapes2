@@ -40,28 +40,5 @@ public class Shape2DFactory {
 
     }
 
-    public Shape get2DShape(String shapeType, double x, double y){
-        if(shapeType==null){
-            return null;
-        }
-        if(shapeType.equalsIgnoreCase("CIRCLE")){
-            return new Circle(x,y);
-        }
-        else if(shapeType.equalsIgnoreCase("RECTANGLE")){
-            return new Rectangle(x,y);
-        }
-       else if(shapeType.equalsIgnoreCase("Polygon")){
-            return new Polygon(new Point(x,y),new Point(y,x));
-        }
-        else if(shapeType.equalsIgnoreCase("Elipse")){
-            return new Ellipse(new Point(x,y),new Point(y,x));
-        }
-
-        return null;
-    }
-
-
-
-
 
 }

@@ -5,7 +5,7 @@ import shapes.Shape;
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Line extends Shape {
+public class Line{
     private Point[] points=new Point[2];
     public Line(){
     }
@@ -15,16 +15,18 @@ public class Line extends Shape {
         points[1]=y;
     }
 
-    public void setStart(Point x){
-
-        points[0]=x;
-    }
     public void setEnd(Point x)
     {
         points[1]=x;
     }
+
     public Point getStart(){
         return points[0];
+    }
+
+    public void setStart(Point x){
+
+        points[0]=x;
     }
 
     public Point getEnds(){

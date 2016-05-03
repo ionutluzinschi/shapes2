@@ -67,7 +67,7 @@ public class Ellipse extends Round{
         }
     }
 
-    public void setFoci(Point x, Point y){
+    public void setCenters(Point x, Point y){
         if (initialised && x.getX() > 0 && x.getY() > 0 && y.getX() > 0 && y.getY() > 0) {
             center=x;
             centerB=y;
