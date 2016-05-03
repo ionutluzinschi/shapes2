@@ -23,35 +23,22 @@ public class TestShapes {
         Point c=new Point (-2,-4);
 
         Triangle[] triangles = new Triangle[15];
-        triangles[0]=new Triangle(5, 8);
+        triangles[0]=new Triangle(new Point(0,0),new Point(3,0),new Point(0,4));
         triangles[1]=new Triangle(new Point(5,5),new Point(2,3),new Point(12,10));
         triangles[2]=new Triangle();
         triangles[3]=new Triangle("Euclid");
-        triangles[4]=new Triangle(1,2,"Eureka");
-        triangles[5]=new Triangle(A,B,C,"Euclid");
-        triangles[6]=new Triangle(-1,-1);
-        triangles[7]=new Triangle(a,b,c);
-        triangles[8]=new Triangle(A,C,D);
-        triangles[9]=new Triangle(1,2,3,4,5,6);
-        triangles[10]=new Triangle(-1,2,-2,4,5,3);
-        triangles[11]=new Triangle(1,2,5,2,3,2);
+        triangles[4]=new Triangle(A,B,C,"Euclid");
+        triangles[5]=new Triangle(a,b,c);
+        triangles[6]=new Triangle(A,C,D);
 
-        // for(int i=0;i<12;i++)
-        // System.out.println(i+" "+triangles[i]);
+        for(int i=0;i<7;i++)
+        System.out.println(i+" "+triangles[i]);
 
-       Assert.assertEquals(20,triangles[0].getArea(),1);
 
-        Assert.assertEquals(-1,triangles[6].getArea(),0);
-        Assert.assertEquals(A,triangles[5].getA());
-        Assert.assertEquals(0,triangles[6].getA().getX(),0);
-        Assert.assertEquals(1,triangles[5].getA().getX(),0);
-        Assert.assertEquals(5,triangles[0].getBase(),0);
-        Assert.assertEquals(3,triangles[5].getB().getX(),0);
-        Assert.assertEquals(5,triangles[5].getC().getX(),0);
-        Assert.assertEquals(8,triangles[0].getHeight(),1);
-        Assert.assertEquals(true,triangles[0].getState());
-        Assert.assertEquals(false,triangles[8].getState());
-
+        Assert.assertEquals(6,triangles[0].getArea(),0);
+        Assert.assertEquals(3,triangles[0].getCathetusA(),0);
+        Assert.assertEquals(4,triangles[0].getCathetusB(),0);
+        Assert.assertEquals(5,triangles[0].getDiagonal(),0);
 
 
 
@@ -72,8 +59,6 @@ public class TestShapes {
         rectangles[3]=new Rectangle(2,3,"MY Rectangle");
         rectangles[4]=new Rectangle(A,B);
         rectangles[5]=new Rectangle(A,B,"rectangle with points");
-        rectangles[6]=new Rectangle(1,2,3,4);
-        rectangles[7]=new Rectangle(1,2,5,8,"Name");
         rectangles[8]=new Rectangle(-1,-8);
         rectangles[9]=new Rectangle(2,-8,"neinitializat");
         rectangles[10]=new Rectangle(a,b);
@@ -84,11 +69,9 @@ public class TestShapes {
         Assert.assertEquals("Rectangle",rectangles[0].getName());
         Assert.assertEquals(4,rectangles[2].getLength(),0);
         Assert.assertEquals(3,rectangles[2].getWidth(),0);
-
-
-        for(int i=0;i<12;i++)
-            System.out.println(i+" "+rectangles[i]);
-
+        Assert.assertEquals(12,rectangles[2].getArea(),0);
+        rectangles[2].setCoordinates(4,5);
+        Assert.assertEquals(20,rectangles[2].getArea(),0);
     }
 
     @Test
@@ -104,8 +87,6 @@ public class TestShapes {
         squares[1]=new Square("My Square");
         squares[2]=new Square(2);
         squares[3]=new Square(3,"Squaree");
-        squares[4]=new Square(1,2,4);
-        squares[5]=new Square(1,2,6,"Square");
         squares[6]=new Square(A,5);
         squares[7]=new Square(B,4,"Square with point");
         squares[8]=new Square(a,4);
