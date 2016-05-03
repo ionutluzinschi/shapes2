@@ -5,7 +5,7 @@ import shapes.Shape;
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Point extends Shape implements Comparable<Point>{
+public class Point implements Comparable<Point>{
     private double x=0;
     private double y=0;
 
@@ -27,13 +27,16 @@ public class Point extends Shape implements Comparable<Point>{
     public double getX(){
         return x;
     }
-    public double getY(){
-        return y;
-    }
+
     public void setX(double x){
         if(x>=0)
             this.x=x;
     }
+
+    public double getY(){
+        return y;
+    }
+
     public void setY(double y){
         if(y>=0)
             this.y=y;
