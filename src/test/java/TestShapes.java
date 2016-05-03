@@ -31,15 +31,11 @@ public class TestShapes {
         triangles[5]=new Triangle(a,b,c);
         triangles[6]=new Triangle(A,C,D);
 
-        for(int i=0;i<7;i++)
-        System.out.println(i+" "+triangles[i]);
-
 
         Assert.assertEquals(6,triangles[0].getArea(),0);
         Assert.assertEquals(3,triangles[0].getCathetusA(),0);
         Assert.assertEquals(4,triangles[0].getCathetusB(),0);
         Assert.assertEquals(5,triangles[0].getDiagonal(),0);
-
 
 
     }
@@ -96,7 +92,7 @@ public class TestShapes {
             System.out.println(i+" "+squares[i]);
 
         Assert.assertEquals(4,squares[2].getArea(),0);
-        Assert.assertEquals(-1,squares[8].getArea(),0);
+        Assert.assertEquals(0,squares[8].getArea(),0);
         Assert.assertEquals(true,squares[2].getState());
         Assert.assertEquals(false,squares[8].getState());
         Assert.assertEquals(A.getX(),squares[6].getCoordinates().getX(),0);
