@@ -1,23 +1,21 @@
 package shapes;
 
-import shapes.Shape;
-import shapes.shapes2D.base.Line;
 import shapes.shapes2D.rectangle.Polygon;
 import shapes.shapes2D.rectangle.Rectangle;
 import shapes.shapes2D.rectangle.Square;
 import shapes.shapes2D.round.Circle;
 import shapes.shapes2D.round.Ellipse;
 import shapes.shapes2D.triangle.Triangle;
-import shapes.shapes3D.Cone;
-import shapes.shapes3D.Cylinder;
-import shapes.shapes3D.Sphere;
+import shapes.shapes3D.round3D.Cone;
+import shapes.shapes3D.round3D.Cylinder;
+import shapes.shapes3D.round3D.Sphere;
 import shapes.shapes3D.cuboids.Cube;
 import shapes.shapes3D.cuboids.Cuboid;
 
 /**
  * Created by v3790148 on 4/28/2016.
  */
-public class AreaCalculator {
+public abstract class AreaCalculator {
     public static double calculateArea(Shape shape){
         if(shape==null)
             return -1;

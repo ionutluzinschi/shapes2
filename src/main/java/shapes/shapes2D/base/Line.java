@@ -1,9 +1,11 @@
 package shapes.shapes2D.base;
 
+import shapes.Shape;
+
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Line {
+public class Line extends Shape {
     private Point[] points=new Point[2];
     public Line(){
     }
@@ -13,12 +15,6 @@ public class Line {
         points[1]=y;
     }
 
-    public Line(double x,double y, double z, double w){
-        if(x>=0 && y>=0 && z>=0 && w>=0){
-            points[0].setCoordinates(x,y);
-            points[1].setCoordinates(z,w);
-        }
-    }
     public void setStart(Point x){
 
         points[0]=x;
@@ -34,10 +30,6 @@ public class Line {
     public Point getEnds(){
         return points[1];
     }
-    public void draw(){
-
-    }
-
 
 
 }

@@ -1,5 +1,6 @@
 package shapes.shapes2D.triangle;
 
+import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
 import shapes.Shape;
 import shapes.shapes2D.triangle.triangleMath.TriangleCalculator;
@@ -7,8 +8,9 @@ import shapes.shapes2D.triangle.triangleMath.TriangleCalculator;
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Triangle extends Shape {
-    private String name="Triangle";
+public class Triangle extends Shapes2D {
+
+
     private Point A;
     private Point B;
     private Point C;
@@ -17,10 +19,8 @@ public class Triangle extends Shape {
     private double diagonal;
     private TriangleCalculator myTCalculator;
 
-
-
-
     public Triangle() {
+        this.name="triangle";
         A = new Point(3, 3);
         B = new Point(7, 7);
         C = new Point(10, 3);
@@ -45,6 +45,7 @@ public class Triangle extends Shape {
             A = a;
             B = b;
             C = c;
+            this.name="triangle";
             this.initialised = true;
             myTCalculator=new TriangleCalculator(this);
         }
@@ -60,17 +61,6 @@ public class Triangle extends Shape {
             myTCalculator=new TriangleCalculator(this);
         }
     }
-
-    @Override
-    public void setName(String name){
-        if(this.initialised)
-            this.name=name;
-    }
-    @Override
-    public String getName(){
-        return name;
-    }
-
 
     public void setCoordinates(Point a, Point b, Point c) {
         if (this.initialised) {
@@ -137,16 +127,7 @@ public class Triangle extends Shape {
     public double getArea(){
         return myTCalculator.getArea();
     }
-    @Override
-    public boolean getState() {
-        return initialised;
-    }
-    @Override
-    public void draw() {
-        System.out.println(this.toString());
-               //
-    }
-    @Override
+
     public String toString() {
         if (initialised)
             return name+":[(" + A.getX() + "," + A.getY() + "),(" + B.getX() + "," + B.getY() + "),(" + C.getX() + "," + C.getY() + ")]";

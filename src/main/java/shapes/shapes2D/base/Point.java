@@ -1,9 +1,11 @@
 package shapes.shapes2D.base;
 
+import shapes.Shape;
+
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Point implements Comparable<Point>{
+public class Point extends Shape implements Comparable<Point>{
     private double x=0;
     private double y=0;
 

@@ -8,7 +8,6 @@ import shapes.shapes2D.triangle.Triangle;
  */
 public class TriangleCalculator {
     Triangle myTriangle;
-
     public TriangleCalculator(Triangle myTriangle){
         this.myTriangle=myTriangle;
         myTriangle.setCathetusA(getPythagora(myTriangle.getA(),myTriangle.getB()));
@@ -64,8 +63,6 @@ public class TriangleCalculator {
             return myTriangle.getCathetusA()*myTriangle.getCathetusB()/2;
         else
             return myTriangle.getCathetusA()*getPythagora(myTriangle.getB(),myTriangle.getC())/2;
-
     }
-
 
 }

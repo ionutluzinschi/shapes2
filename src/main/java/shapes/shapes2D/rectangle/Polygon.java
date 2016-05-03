@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shapes.Shape;
+import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
 
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Polygon extends Shape {
+public class Polygon extends Shapes2D {
 
 
     List<Point> list= new ArrayList<Point>();
@@ -50,8 +51,6 @@ public class Polygon extends Shape {
         initialised=true;
     }
 
-    @Override
-    public void draw(){    }
 
     @Override
     public String toString(){

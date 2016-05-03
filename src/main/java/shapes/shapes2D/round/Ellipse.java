@@ -1,12 +1,13 @@
 package shapes.shapes2D.round;
 
 import shapes.Shape;
+import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
 
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Ellipse extends Shape{
+public class Ellipse extends Shapes2D{
     private Point focA;
     private Point focB;
     private double length;

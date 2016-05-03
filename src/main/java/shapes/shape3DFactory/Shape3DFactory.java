@@ -1,9 +1,9 @@
 package shapes.shape3DFactory;
 
 import shapes.Shape;
-import shapes.shapes3D.Cone;
-import shapes.shapes3D.Cylinder;
-import shapes.shapes3D.Sphere;
+import shapes.shapes3D.round3D.Cone;
+import shapes.shapes3D.round3D.Cylinder;
+import shapes.shapes3D.round3D.Sphere;
 import shapes.shapes3D.cuboids.Cube;
 import shapes.shapes3D.cuboids.Cuboid;
 import shapes.shapes3D.pyramids.Pyramid;

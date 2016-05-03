@@ -6,10 +6,8 @@ import shapes.shapes3D.base.Point3D;
 /**
  * Created by V3790148 on 4/27/2016.
  */
-public class Pyramid extends Shape {
-    private double length;
+public class Pyramid extends Pyramids {
     private double width;
-    private Point3D tip;
 
     public Pyramid(){
         length=5;
@@ -17,6 +15,7 @@ public class Pyramid extends Shape {
         tip=new Point3D();
         initialised=true;
         name="Pyramid";
+        base=new Point3D(5,5,5);
     }
     public Pyramid(String name){
         this.name=name;
@@ -24,10 +23,12 @@ public class Pyramid extends Shape {
         width=5;
         tip=new Point3D();
         initialised=true;
+        base=new Point3D(5,5,5);
     }
-    public Pyramid(Point3D point,double length,double width){
-        if(point.getX()>=0 && point.getY()>=0 && point.getZ()>=0 &&length>0 && width>0) {
-            tip = point;
+    public Pyramid(Point3D tip,Point3D base, double length,double width){
+        if(tip.getX() >= 0 && tip.getY() >= 0 && tip.getZ() >= 0 && length > 0 && base.getX()>0 &&base.getZ()>0 &&base.getY()>0 && width>0) {
+            this.tip=tip;
+            this.base=base;
             this.length = length;
             this.width = width;
             initialised = true;
@@ -35,56 +36,23 @@ public class Pyramid extends Shape {
         }
     }
 
-    public Pyramid(Point3D point,double length,double width,String name){
-        if(point.getX()>=0 && point.getY()>=0 && point.getZ()>=0 &&length>0 && width>0) {
+    public Pyramid(Point3D tip,Point3D base, double length,double width,String name){
+        if(tip.getX() >= 0 && tip.getY() >= 0 && tip.getZ() >= 0 && length > 0 && base.getX()>0 &&base.getZ()>0 &&base.getY()>0 && width>0) {
+            this.tip=tip;
+            this.base=base;
             this.name=name;
-            tip = point;
             this.length = length;
             this.width = width;
             initialised = true;
         }
 
-    }
-    public Pyramid(double x,double y,double z,double length,double width) {
-        if (x >= 0 && y >= 0 && z >= 0 && length > 0 && width > 0) {
-            tip = new Point3D(x, y, z);
-            this.length = length;
-            this.width = width;
-            initialised = true;
-            name = "Pyramid";
-        }
-    }
-    public Pyramid(double x,double y,double z,double length,double width,String name){
-        if (x >= 0 && y >= 0 && z >= 0 && length > 0 && width > 0) {
-        this.name=name;
-        tip=new Point3D(x,y,z);
-         this.length = length;
-         this.width = width;
-         initialised = true;
-        }
-    }
-
-    public void setLength(double length){
-        if(initialised && length>0)
-            this.length=length;
     }
     public void setWidth(double width){
         if(initialised && width>0)
             this.width=width;
     }
 
-    public void setTip(Point3D myPoint){
-        if(initialised && myPoint.getZ()>=0 && myPoint.getY()>=0 && myPoint.getX()>=0)
-            tip=myPoint;
-    }
 
-
-    public double getLength(){
-        if(initialised)
-            return length;
-        else
-            return 0;
-    }
     public double getWidth(){
         if(initialised)
             return width;
@@ -92,18 +60,6 @@ public class Pyramid extends Shape {
             return 0;
     }
 
-    public Point3D getTip(){
-        if(initialised)
-            return tip;
-        else
-            return new Point3D();
-    }
-
-    @Override
-    public void draw(){
-
-    }
-    @Override
     public String toString(){
         if(initialised){
             return name+":["+tip+" "+length+" "+width+"]";

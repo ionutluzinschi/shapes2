@@ -1,17 +1,16 @@
 package shapes.shapes2D.rectangle;
 
 import shapes.Shape;
+import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
 
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Rectangle extends Shape{
+public class Rectangle extends Rectangular{
 
 
-    private Point upperLeft;
     private Point lowerRight;
-    private double length;
     private double width;
 
     public Rectangle(){
@@ -19,6 +18,8 @@ public class Rectangle extends Shape{
         upperLeft= new Point(0,0);
         lowerRight=new Point(5,5);
         initialised=true;
+        calculateLength();
+        calculateWidth();
     }
 
     public Rectangle(String name){
@@ -26,6 +27,8 @@ public class Rectangle extends Shape{
         upperLeft= new Point(0,0);
         lowerRight=new Point(5,5);
         initialised=true;
+        calculateLength();
+        calculateWidth();
     }
 
     public Rectangle(double length,double width){
@@ -34,6 +37,8 @@ public class Rectangle extends Shape{
             upperLeft=new Point(0,0);
             lowerRight =new Point(length, width);
             initialised=true;
+           calculateLength();
+           calculateWidth();
         }
     }
     public Rectangle(Point x, Point y){
@@ -43,6 +48,8 @@ public class Rectangle extends Shape{
             upperLeft=x;
             lowerRight=y;
             initialised=true;
+           calculateLength();
+            calculateWidth();
         }
     }
     public Rectangle(Point x, Point y,String name){
@@ -52,6 +59,8 @@ public class Rectangle extends Shape{
             upperLeft=x;
             lowerRight=y;
             initialised=true;
+            calculateLength();
+            calculateWidth();
         }
     }
 
@@ -62,6 +71,8 @@ public class Rectangle extends Shape{
             upperLeft=new Point(0,0);
             lowerRight=new Point(length, width);
             initialised=true;
+            calculateLength();
+            calculateWidth();
         }
     }
 
@@ -69,7 +80,9 @@ public class Rectangle extends Shape{
     public void setCoordinates(double length, double width){
         if(initialised){
         if(length>0 && width >0) {
-            lowerRight.setCoordinates(length, width);
+            lowerRight.setCoordinates(length+upperLeft.getX(), width+upperLeft.getY());
+            calculateLength();
+            calculateWidth();
 
         }
     }
@@ -79,41 +92,34 @@ public class Rectangle extends Shape{
             if (x.getX() > 0 && x.getY() > 0 && y.getX() > 0 && y.getY() > 0) {
                 upperLeft = x;
                 lowerRight = y;
+                calculateLength();
+                calculateWidth();
             }
         }
     }
 
-
-    public double getLength(){
-        if(initialised){
-            if(Math.abs(lowerRight.getX()-upperLeft.getX())>Math.abs(lowerRight.getY()-upperLeft.getY()))
-                return Math.abs(lowerRight.getX()-upperLeft.getX());
-            else
-                return Math.abs(lowerRight.getY()-upperLeft.getY());
-        }
+    private void calculateLength(){
+        if(Math.abs(lowerRight.getX()-upperLeft.getX())>Math.abs(lowerRight.getY()-upperLeft.getY()))
+             length=Math.abs(lowerRight.getX()-upperLeft.getX());
         else
-            return 0;
-
+           length=Math.abs(lowerRight.getY()-upperLeft.getY());
     }
 
+
+    private void calculateWidth(){
+        if(Math.abs(lowerRight.getX()-upperLeft.getX())<Math.abs(lowerRight.getY()-upperLeft.getY()))
+            width=Math.abs(lowerRight.getX()-upperLeft.getX());
+        else
+            width=Math.abs(lowerRight.getY()-upperLeft.getY());
+    }
     public double getWidth(){
         if(initialised){
-            if(Math.abs(lowerRight.getX()-upperLeft.getX())<Math.abs(lowerRight.getY()-upperLeft.getY()))
-                return Math.abs(lowerRight.getX()-upperLeft.getX());
-            else
-                return Math.abs(lowerRight.getY()-upperLeft.getY());
+          return width;
         }
         else
             return 0;
     }
 
-
-    @Override
-    public void draw(){
-        System.out.println("Rectangle: length= "+this.getLength()+", width= "+this.getWidth());
-    }
-
-    @Override
     public String toString(){
         if(this.initialised)
             return name+":[("+upperLeft.getX()+","+upperLeft.getY()+"),("+lowerRight.getX()+"),("+lowerRight.getY()+")]";

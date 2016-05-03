@@ -7,15 +7,13 @@ import shapes.shapes3D.base.Point3D;
 /**
  * Created by V3790148 on 4/27/2016.
  */
-public class Cuboid extends Shape {
+public class Cuboid extends Cuboids {
 
-    private Point3D start;
-    private double length;
     private double width;
     private double height;
 
     public Cuboid(){
-        start=new Point3D();
+        upperLeft=new Point3D();
         length=5;
         width=5;
         height=5;
@@ -24,47 +22,27 @@ public class Cuboid extends Shape {
     }
     public Cuboid(String name){
         this.name=name;
-        start=new Point3D();
+        upperLeft=new Point3D();
         length=5;
         width=5;
         height=5;
         initialised=true;
     }
 
-    public Cuboid(Point3D start, double length, double width,double height) {
-        if (start.getZ() > 0 && start.getY() > 0 && start.getX() > 0 && width > 0 && length > 0 && height > 0) {
+    public Cuboid(Point3D upperLeft, double length, double width,double height) {
+        if (upperLeft.getZ() > 0 && upperLeft.getY() > 0 && upperLeft.getX() > 0 && width > 0 && length > 0 && height > 0) {
             name = "Cuboid";
-            this.start = start;
+            this.upperLeft = upperLeft;
             this.length = length;
             this.width = width;
             this.height = height;
             initialised = true;
         }
     }
-    public Cuboid(Point3D start, double length, double width,double height,String name) {
-        if (start.getZ() > 0 && start.getY() > 0 && start.getX() > 0 && width > 0 && length > 0 && height > 0) {
+    public Cuboid(Point3D upperLeft, double length, double width,double height,String name) {
+        if (upperLeft.getZ() > 0 && upperLeft.getY() > 0 && upperLeft.getX() > 0 && width > 0 && length > 0 && height > 0) {
             this.name = name;
-            this.start = start;
-            this.length = length;
-            this.width = width;
-            this.height = height;
-            initialised = true;
-        }
-    }
-    public Cuboid(double x,double y,double z, double length, double width,double height) {
-        if (x >= 0 && y >= 0 && z >= 0 && length > 0 && width > 0 && height > 0) {
-            start = new Point3D(x, y, z);
-            name = "Cuboid";
-            this.length = length;
-            this.width = width;
-            this.height = height;
-            initialised = true;
-        }
-    }
-    public Cuboid(double x,double y,double z, double length, double width,double height,String name){
-        if (x >= 0 && y >= 0 && z >= 0 && length > 0 && width > 0 && height > 0) {
-            start = new Point3D(x, y, z);
-            this.name = name;
+            this.upperLeft = upperLeft;
             this.length = length;
             this.width = width;
             this.height = height;
@@ -72,15 +50,6 @@ public class Cuboid extends Shape {
         }
     }
 
-    public Point3D getCoordinates(){
-        if(initialised)
-            return start;
-        else
-            return new Point3D();
-    }
-    public double getLength(){
-        return length;
-    }
 
     public double getWidth() {
         return width;
@@ -90,12 +59,7 @@ public class Cuboid extends Shape {
         return height;
     }
 
-    public void setStart(Point3D x){
-        start=x;
-    }
-    public  void setStart(double x,double y,double z){
-        start=new Point3D(x,y,z);
-    }
+
     public void setLength(double length){
         if(length>0)
             this.length=length;
@@ -110,14 +74,9 @@ public class Cuboid extends Shape {
         }
     }
 
-    @Override
-    public void draw(){
-
-    }
-    @Override
     public String toString(){
         if(initialised)
-            return name+"["+start+ " "+length+", "+height+" ,"+width+"]";
+            return name+"["+upperLeft+ " "+length+", "+height+" ,"+width+"]";
         return "Square not initialised";
     }
 

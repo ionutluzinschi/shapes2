@@ -1,4 +1,4 @@
-package shapes.shapes3D;
+package shapes.shapes3D.round3D;
 
 import shapes.Shape;
 import shapes.shapes3D.base.Point3D;
@@ -6,10 +6,8 @@ import shapes.shapes3D.base.Point3D;
 /**
  * Created by V3790148 on 4/27/2016.
  */
-public class Cylinder extends Shape{
-    private Point3D start;
+public class Cylinder extends Round3D{
     private Point3D end;
-    private double radius;
 
     public Cylinder(){
         start=new Point3D();
@@ -43,17 +41,12 @@ public class Cylinder extends Shape{
             initialised = true;
         }
     }
-    public void setStart(Point3D start){
-        if(initialised && start.getX()>=0 && start.getZ()>=0 && start.getY()>=0)
-            this.start=start;
-    }
+
     public void setEnd(Point3D end){
         if(initialised && end.getX()>0 && end.getY()>0 && end.getZ()>0)
             this.end=end;
     }
-    public Point3D getStart(){
-        return start;
-    }
+
     public Point3D getEnd(){
         return end;
     }
@@ -63,15 +56,7 @@ public class Cylinder extends Shape{
             return end.getZ()-start.getZ();
         return -1;
     }
-    @Override
-    public void draw(){        //
-    }
 
-    public double getRadius(){
-        return radius;
-    }
-
-    @Override
     public String toString(){
         if(initialised)
             return name+":[("+start.getX()+","+start.getY()+","+start.getZ()+"),("+
