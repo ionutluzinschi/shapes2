@@ -41,11 +41,12 @@ public class CompositeTest {
 
 
         first.draw();
-        triangle.draw();
-        circle.draw();
-        cube.draw();
-        pyramid.draw();
-        sphere.draw();
+
+       // triangle.draw();
+        //circle.draw();
+      //  cube.draw();
+      //  pyramid.draw();
+      //  sphere.draw();
 
 
 
