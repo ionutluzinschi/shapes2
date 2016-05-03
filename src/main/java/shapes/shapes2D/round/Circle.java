@@ -6,9 +6,9 @@ import shapes.shapes2D.base.Point;
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Circle extends Shapes2D {
-    private Point center;
-    private double radius;
+public class Circle extends Round {
+
+
 
 
     public Circle() {
@@ -62,63 +62,7 @@ public class Circle extends Shapes2D {
         }
 
     }
-    public Circle(double x,double y) {
 
-        if (x > 0 && y > 0) {
-            center = new Point(x, y);
-            initialised = true;
-            if (x > 5 && y > 5) {
-               radius = 5;
-            }
-            else
-                radius=1;
-            name="Circle";
-        }
-    }
-    public Circle(double x,double y,String name) {
-
-            this.name=name;
-            center = new Point(x, y);
-            initialised = true;
-            if (x > 5 && y > 5) {
-                radius = 5;
-            }
-            else
-                radius=1;
-        }
-
-    public void setCoordinates(double x, double y) {
-        if (initialised) {
-            if (x > 0 && y > 0 && x > radius && y > radius)
-                center.setCoordinates(x, y);
-        }
-    }
-
-    public void setCoordinates(Point x) {
-        if (initialised) {
-            if (x.getX() > 0 && x.getY() > 0 &&  radius > x.getX() && radius > x.getY())
-                center = x;
-        }
-    }
-    public void setRadius(double z){
-        if(initialised){
-            if(radius<center.getX() && radius <center.getY() && radius>0)
-                radius=z;
-        }
-    }
-
-    public Point getCoordinates() {
-        if (initialised)
-            return center;
-        else
-            return new Point(50,50);
-    }
-    public double getRadius(){
-        if(initialised)
-            return radius;
-        else
-            return 0;
-    }
 
 
 

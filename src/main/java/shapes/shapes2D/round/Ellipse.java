@@ -7,31 +7,28 @@ import shapes.shapes2D.base.Point;
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Ellipse extends Shapes2D{
-    private Point focA;
-    private Point focB;
-    private double length;
-
-
+public class Ellipse extends Round{
+    private Point centerB;
+  
     public Ellipse(){
-        focA=new Point();
-        focB=new Point();
-        length=5;
+        center=new Point();
+        centerB=new Point();
+        radius=5;
         initialised=true;
         name="Ellipse";
     }
     public Ellipse(String name){
         this.name=name;
-        focA=new Point();
-        focB=new Point();
-        length=5;
+        center=new Point();
+        centerB=new Point();
+        radius=5;
         initialised=true;
     }
     public Ellipse(Point x,Point y){
         if(x.getX()>0 && x.getY()>0 && y.getX()>0 &&y.getY()>0){
-        focA=x;
-        focB=y;
-        length=Math.abs(focA.getY()-focB.getY())+1;
+        center=x;
+        centerB=y;
+        radius=Math.abs(center.getY()-centerB.getY())+1;
         name="Ellipse";
         }
     }
@@ -39,68 +36,58 @@ public class Ellipse extends Shapes2D{
     public Ellipse(Point x,Point y, String name) {
         if (x.getX() > 0 && x.getY() > 0 && y.getX() > 0 && y.getY() > 0) {
             this.name = name;
-            focA = x;
-            focB = y;
-            length = Math.abs(focA.getY() - focB.getY()) + 1;
+            center = x;
+            centerB = y;
+            radius = Math.abs(center.getY() - centerB.getY()) + 1;
         }
     }
 
-    public Ellipse(Point x,Point y, double length) {
+    public Ellipse(Point x,Point y, double radius) {
         if (x.getX() > 0 && x.getY() > 0 && y.getX() > 0 && y.getY() > 0) {
             name = "Ellipse";
-            focA = x;
-            focB = y;
-            if (length > 0 && length > focA.getX() && length > focB.getX() && length > focA.getY() && length > focB.getY())
-                this.length = length;
+            center = x;
+            centerB = y;
+            if (radius > 0 && radius > center.getX() && radius > centerB.getX() && radius > center.getY() && radius > centerB.getY())
+                this.radius = radius;
             else
-                this.length = 10 + Math.max(Math.max(focA.getX(), focA.getY()), Math.max(focB.getX(), focB.getY()));
+                this.radius = 10 + Math.max(Math.max(center.getX(), center.getY()), Math.max(centerB.getX(), centerB.getY()));
             initialised = true;
         }
     }
-    public Ellipse(Point x,Point y, double length, String name) {
+    public Ellipse(Point x,Point y, double radius, String name) {
         if (x.getX() > 0 && x.getY() > 0 && y.getX() > 0 && y.getY() > 0) {
             this.name = name;
-            focA = x;
-            focB = y;
-            if (length > 0)
-                this.length = length;
+            center = x;
+            centerB = y;
+            if (radius > 0)
+                this.radius = radius;
             else
-                this.length = 5;
+                this.radius = 5;
             initialised = true;
         }
     }
 
     public void setFoci(Point x, Point y){
         if (initialised && x.getX() > 0 && x.getY() > 0 && y.getX() > 0 && y.getY() > 0) {
-            focA=x;
-            focB=y;
+            center=x;
+            centerB=y;
         }
     }
 
-    public void setLength(double length){
-        if(initialised && length>0){
-            this.length=length;
+    public Point getCenterB(){
+        return centerB;
+    }
+
+    public void setCenterB(Point x) {
+        if (initialised) {
+            if (x.getX() > 0 && x.getY() > 0 &&  radius > x.getX() && radius > x.getY())
+                centerB= x;
         }
     }
-    public double getLength(){
-        return length;
-    }
-    public Point getFocA(){
-        return focA;
-    }
-    public Point getFocB(){
-        return focB;
-    }
 
-    @Override
-    public void draw(){
-        System.out.println("FocalA "+focA+" FocalB "+focB);
-
-    }
-    @Override
     public String toString(){
         if(initialised)
-            return name+":[("+focA+","+focB+") " +length+"]";
+            return name+":[("+center+","+centerB+") " +radius+"]";
         else
             return "Ellipse not initialised";
 
