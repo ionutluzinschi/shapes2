@@ -28,7 +28,7 @@ public abstract class AreaCalculator {
          else if(shape instanceof Circle)
             return 2*Math.PI*((Circle) shape).getRadius();
         else if(shape instanceof Ellipse)
-            return Math.PI*((((Ellipse) shape).getLength()-((Ellipse) shape).getFocA().getX())/2)*((((Ellipse) shape).getLength()-((Ellipse) shape).getFocA().getY())/2);
+            return Math.PI*((((Ellipse) shape).getRadius()-((Ellipse) shape).getCenter().getX())/2)*((((Ellipse) shape).getRadius()-((Ellipse) shape).getCenter().getY())/2);
         else if(shape instanceof Triangle)
             return ((Triangle)shape).getArea();
         else if(shape instanceof Cube)
