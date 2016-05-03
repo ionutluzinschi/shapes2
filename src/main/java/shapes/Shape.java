@@ -13,8 +13,7 @@ public abstract class Shape {
 
     protected String name;
     protected boolean initialised=false;
-
-    public void draw(){ System.out.println(this.toString()) ;   }
+    List<Shape> subShapes=new ArrayList<Shape>();
 
     public boolean getState(){
         return initialised;
@@ -29,4 +28,21 @@ public abstract class Shape {
         return name;
     }
 
+
+    public void addSubShape(Shape sh){
+        subShapes.add(sh);
+    }
+    public void removeSubShape(Shape sh){
+        subShapes.remove(sh);
+    }
+    public List<Shape> getSubShapes(){
+        return subShapes;
+    }
+
+    public void draw(){
+        System.out.println(this);
+        for(Shape sh:getSubShapes()) {
+            sh.draw();
+        }
+    }
 }

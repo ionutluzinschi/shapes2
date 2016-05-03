@@ -120,12 +120,8 @@ public class Circle extends Shapes2D {
             return 0;
     }
 
-    @Override
-    public void draw(){
-        System.out.println("Circle: radius= "+radius+" center at "+center);
-        //
-    }
-    @Override
+
+
     public String toString(){
         if (initialised)
         return name+":[("+center.getX()+","+center.getY()+"),"+radius+"]";
