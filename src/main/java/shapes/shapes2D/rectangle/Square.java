@@ -1,32 +1,47 @@
 package shapes.shapes2D.rectangle;
 
-import shapes.shapes2D.Shape;
+import shapes.Shape;
 import shapes.shapes2D.base.Point;
 
 /**
  * Created by V3790148 on 4/26/2016.
  */
 
-    public class Square implements Shape {
+    public class Square extends Shape {
 
+        private String name="Square";
         private double length;
         private Point start;
-        private boolean initialised=false;
+
 
         public Square(){
-            length=1;
-            start=new Point(0,0);
+            length=3;
+            start=new Point(5,5);
             initialised=true;
         }
-
-        public Square(double x, double y,double length){
-            if(x>=0 && y>=0 && length>=0)
-            {
-                start=new Point(x,y);
-                this.length=length;
-                initialised=true;
+        public Square(String name){
+        this.name=name;
+        length=3;
+        start=new Point(5,5);
+        initialised=true;
+    }
+        public Square(double length){
+            if(length>0) {
+                this.length = length;
+                start = new Point(0, 0);
+                initialised = true;
             }
         }
+        public Square(double length,String name){
+            if(length>0) {
+                this.name = name;
+                this.length = length;
+                start = new Point(0, 0);
+                initialised = true;
+            }
+    }
+
+
         public Square(Point one, double length){
             if(one.getX()>=0 && one.getY()>=0 && length>0){
                 start=one;
@@ -35,7 +50,17 @@ import shapes.shapes2D.base.Point;
             }
 
         }
-        public void setCoordinates(Point one) {
+         public Square(Point one, double length,String name){
+        if(one.getX()>=0 && one.getY()>=0 && length>0){
+            this.name=name;
+            start=one;
+            this.length=length;
+            initialised=true;
+        }
+
+    }
+
+    public void setCoordinates(Point one) {
             if (initialised) {
                 if (one.getX() >= 0 && one.getY() >= 0) {
                     start = one;
@@ -62,17 +87,16 @@ import shapes.shapes2D.base.Point;
             else
                 return 0;
         }
-
+        @Override
         public void draw(){
+            System.out.println("Square: length= "+length+" starts at "+start);
 
         }
-        public boolean getState(){
-            return initialised;
-    }
 
+        @Override
         public String toString(){
             if (initialised)
-                 return "Square starts at ("+start.getX()+","+start.getY()+") and has a length of "+length;
+                 return name+"[("+start.getX()+","+start.getY()+") "+length+"]";
             else
                 return "Square not initialised";
         }

@@ -1,49 +1,67 @@
 package shapes.shapes2D.rectangle;
 
-import shapes.shapes2D.Shape;
-import shapes.shapes2D.base.Line;
+import shapes.Shape;
 import shapes.shapes2D.base.Point;
 
 /**
  * Created by V3790148 on 4/26/2016.
  */
-public class Rectangle implements Shape{
+public class Rectangle extends Shape{
+
 
     private Point upperLeft;
     private Point lowerRight;
-    private boolean initialised=false;
+    private double length;
+    private double width;
 
     public Rectangle(){
+        name="Rectangle";
         upperLeft= new Point(0,0);
         lowerRight=new Point(5,5);
         initialised=true;
     }
 
+    public Rectangle(String name){
+        this.name=name;
+        upperLeft= new Point(0,0);
+        lowerRight=new Point(5,5);
+        initialised=true;
+    }
 
+    public Rectangle(double length,double width){
+        if(length>0 && width >0) {
+            name="Rectangle";
+            upperLeft=new Point(0,0);
+            lowerRight =new Point(length, width);
+            initialised=true;
+        }
+    }
     public Rectangle(Point x, Point y){
         if(x.getX()>0 && x.getY()>0 && y.getX()>0 && y.getY()>0)
         {
-
+            name="Rectangle";
             upperLeft=x;
             lowerRight=y;
             initialised=true;
         }
     }
-    public Rectangle(double length, double width ){
-
-        if(length>0 && width >0) {
-            lowerRight.setCoordinates(length, width);
+    public Rectangle(Point x, Point y,String name){
+        if(x.getX()>0 && x.getY()>0 && y.getX()>0 && y.getY()>0)
+        {
+            this.name=name;
+            upperLeft=x;
+            lowerRight=y;
             initialised=true;
         }
     }
 
-    public Rectangle(double x, double y, double z, double w){
-        if(x>=0 && y>=0 ) {
-            upperLeft.setCoordinates(x, y);
-            if (z > 0 && z != upperLeft.getX() && w != upperLeft.getY() && w > 0) {
-                lowerRight.setCoordinates(z, w);
-                initialised=true;
-            }
+    public Rectangle(double length, double width,String name ){
+
+        if(length>0 && width >0) {
+            this.name=name;
+            upperLeft=new Point(0,0);
+            lowerRight=new Point(length, width);
+            initialised=true;
         }
     }
 
@@ -65,17 +83,7 @@ public class Rectangle implements Shape{
         }
     }
 
-    public void setCoordinates(double x, double y, double z, double w) {
-        if(initialised){
-        if (x >= 0 && y >= 0) {
-            upperLeft.setCoordinates(x, y);
-            if (z > 0 && z != upperLeft.getX() && w != upperLeft.getY() && w > 0) {
-                lowerRight.setCoordinates(z, w);
 
-            }
-        }
-    }
-    }
     public double getLength(){
         if(initialised){
             if(Math.abs(lowerRight.getX()-upperLeft.getX())>Math.abs(lowerRight.getY()-upperLeft.getY()))
@@ -100,16 +108,15 @@ public class Rectangle implements Shape{
     }
 
 
-    public boolean getState(){
-        return initialised;
-    }
+    @Override
     public void draw(){
-        //
+        System.out.println("Rectangle: length= "+this.getLength()+", width= "+this.getWidth());
     }
 
+    @Override
     public String toString(){
-        if(initialised)
-            return ("Rectangle has coordinates [("+upperLeft.getX()+","+upperLeft.getY()+") , ("+lowerRight.getX()+"),("+lowerRight.getY()+")]");
+        if(this.initialised)
+            return name+":[("+upperLeft.getX()+","+upperLeft.getY()+"),("+lowerRight.getX()+"),("+lowerRight.getY()+")]";
 
         else
              return "Rectangle not initialised";
