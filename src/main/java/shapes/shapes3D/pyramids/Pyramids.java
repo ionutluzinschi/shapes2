@@ -1,5 +1,6 @@
 package shapes.shapes3D.pyramids;
 
+import shapes.Exceptions.NullObject;
 import shapes.shapes3D.Shapes3D;
 import shapes.shapes3D.base.Point3D;
 
@@ -11,28 +12,32 @@ public abstract class Pyramids extends Shapes3D {
     protected Point3D tip;
     protected Point3D base;
 
+    public double getLength(){
+        return length;
+    }
+
     public void setLength(double length){
         if(initialised && length>0)
             this.length=length;
     }
-    public void setTip(Point3D tip){
-        if(initialised && tip.getX() >= 0 && tip.getY() >= 0 && tip.getZ() >= 0)
-            this.tip=tip;
-    }
-    public void setBase(Point3D base){
-        if(initialised && base.getY()>0 && base.getZ()>0 && base.getX()>0)
-            this.base=base;
-    }
-    public double getLength(){
-        return length;
-    }
+
     public Point3D getTip(){
         return tip;
-
     }
+
+    public void setTip(Point3D tip) throws NullObject{
+        if(this.equals(null))
+            throw new NullObject();
+        this.tip=tip;
+    }
+
     public Point3D getBase(){
         return base;
     }
 
-
+    public void setBase(Point3D base) throws NullObject{
+        if(this.equals(null))
+            throw new NullObject();
+            this.base=base;
+    }
 }

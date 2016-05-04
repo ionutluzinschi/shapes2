@@ -1,8 +1,11 @@
 package shapes.shapes3D.pyramids;
 
+import shapes.Exceptions.Invalid3DCoordinates;
+import shapes.Exceptions.InvalidValue;
 import shapes.Shape;
 import shapes.shapes2D.rectangle.Square;
 import shapes.shapes3D.base.Point3D;
+import shapes.visitorPattern.DrawingPartsVisitor;
 
 /**
  * Created by V3790148 on 4/27/2016.
@@ -10,55 +13,61 @@ import shapes.shapes3D.base.Point3D;
 public class SquarePyramid extends Pyramids {
 
     public SquarePyramid(){
-        length=5;
+        length=3;
         name="Square Pyramid";
-        tip=new Point3D();
-        base=new Point3D(5,5,5);
+
+        try{
+        tip=new Point3D(2,2,4);
+        base=new Point3D(5,5,0);}
+        catch(Invalid3DCoordinates e){}
         initialised=true;
     }
-    public SquarePyramid(String name){
+    public SquarePyramid(String name) {
         this.name=name;
-        length=5;
-        tip=new Point3D();
-        base=new Point3D(5,5,5);
+        length=3;
+        try{
+            tip=new Point3D(2,2,4);
+            base=new Point3D(5,5,0);}
+        catch(Invalid3DCoordinates e){}
         initialised=true;
     }
 
-    public SquarePyramid(Point3D tip,Point3D base,double length) {
-        if (tip.getX() >= 0 && tip.getY() >= 0 && tip.getZ() >= 0 && length > 0 && base.getX()>0 &&base.getZ()>0 &&base.getY()>0) {
-            name = "Square Pyramid";
-            this.tip=tip;
-            this.base=base;
-            this.length = length;
-            initialised = true;
-        }
+    public SquarePyramid(Point3D tip,Point3D base,double length) throws InvalidValue {
+        if (length <= 0)
+            throw new InvalidValue(length);
+        name = "Square Pyramid";
+        this.tip = tip;
+        this.base = base;
+        this.length = length;
+        initialised = true;
     }
 
-
-    public SquarePyramid(Point3D tip,Point3D base,double length, String name){
-        if (tip.getX() >= 0 && tip.getY() >= 0 && tip.getZ() >= 0 && length > 0 && base.getX()>0 &&base.getZ()>0 &&base.getY()>0) {
+    public SquarePyramid(Point3D tip,Point3D base,double length, String name) throws InvalidValue{
+        if (length <= 0)
+            throw new InvalidValue(length);
             this.name = name;
             this.tip=tip;
             this.base=base;
             this.length = length;
             initialised = true;
-        }
     }
 
-
-
-
-    @Override
+    public void accept(DrawingPartsVisitor drawingPartsVisitor){
+        drawingPartsVisitor.visit(this);
+    }
     public void draw(){
-
-    }
-    @Override
-    public String toString(){
-        if(initialised){
-            return name+":["+tip+" "+length+"]";
+        System.out.println("Drawing "+name+" with a length of "+length+" and the tip at "+tip);
+        if (getSubShapes().size() > 0) {
+            System.out.println("Drawing subshapes: ");
+            for (Shape sh : getSubShapes()) {
+                sh.draw();
+            }
+            System.out.println("Finished drawing subshapes for "+name);
         }
-        else
-            return "square pyramid not initialised";
+    }
+
+    public String toString(){
+        return name+":["+tip+" "+length+"]";
     }
 
 

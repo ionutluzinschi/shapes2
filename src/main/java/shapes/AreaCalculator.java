@@ -1,5 +1,6 @@
 package shapes;
 
+import shapes.Exceptions.NullObject;
 import shapes.shapes2D.rectangle.Polygon;
 import shapes.shapes2D.rectangle.Rectangle;
 import shapes.shapes2D.rectangle.Square;
@@ -22,7 +23,8 @@ public abstract class AreaCalculator {
         if(shape instanceof Square)
             return ((Square) shape).getLength()*((Square) shape).getLength();
         else if(shape instanceof Rectangle)
-            return ((Rectangle) shape).getLength()*((Rectangle) shape).getWidth();
+            try{ return  ((Rectangle) shape).getLength()*((Rectangle) shape).getWidth();}
+                       catch(NullObject e){System.out.println(e); }
         else if(shape instanceof Polygon)
             return -1;
          else if(shape instanceof Circle)

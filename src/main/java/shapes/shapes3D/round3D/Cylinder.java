@@ -1,7 +1,10 @@
 package shapes.shapes3D.round3D;
 
+import shapes.Exceptions.Invalid3DCoordinates;
+import shapes.Exceptions.NullObject;
 import shapes.Shape;
 import shapes.shapes3D.base.Point3D;
+import shapes.visitorPattern.DrawingPartsVisitor;
 
 /**
  * Created by V3790148 on 4/27/2016.
@@ -10,59 +13,68 @@ public class Cylinder extends Round3D{
     private Point3D end;
 
     public Cylinder(){
-        start=new Point3D();
-        end=new Point3D();
+        try {
+            start = new Point3D(0, 5, 5);
+            end = new Point3D(5, 5, 5);
+        } catch(Invalid3DCoordinates e){}
         radius=5;
         initialised=true;
         name="Cylinder";
     }
     public Cylinder(String name){
         this.name=name;
-        start=new Point3D();
-        end=new Point3D();
+        try {
+            start = new Point3D(0, 5, 5);
+            end = new Point3D(5, 5, 5);
+        } catch(Invalid3DCoordinates e){}
         radius=5;
         initialised=true;
     }
 
     public Cylinder(Point3D start,Point3D end) {
-        if (start.getX() >= 0 && start.getY() >= 0 && start.getZ() >= 0 && end.getX() > 0 && end.getZ() > 0 && end.getZ() > 0) {
             this.start = start;
             this.end = end;
             initialised = true;
             name = "Cylinder";
-        }
     }
 
     public Cylinder(Point3D start,Point3D end,String name) {
-        if (start.getX() >= 0 && start.getY() >= 0 && start.getZ() >= 0 && end.getX() > 0 && end.getZ() > 0 && end.getZ() > 0) {
-            this.name = name;
+        this.name = name;
             this.start = start;
             this.end = end;
             initialised = true;
-        }
     }
-
-    public void setEnd(Point3D end){
-        if(initialised && end.getX()>0 && end.getY()>0 && end.getZ()>0)
-            this.end=end;
+    public void accept(DrawingPartsVisitor drawingPartsVisitor){
+        drawingPartsVisitor.visit(this);
     }
 
     public Point3D getEnd(){
         return end;
     }
 
+    public void setEnd(Point3D end) throws NullObject{
+        if(this.equals(null))
+            throw new NullObject();
+            this.end=end;
+    }
+
     public double getHeight(){
-        if(initialised)
-            return end.getZ()-start.getZ();
-        return -1;
+        return Math.abs(end.getZ()-start.getZ());
+    }
+    public void draw(){
+        System.out.println("Drawing "+name+" with a length of "+radius+" and the starting point at "+start);
+        if (getSubShapes().size() > 0) {
+            System.out.println("Drawing subshapes: ");
+            for (Shape sh : getSubShapes()) {
+                sh.draw();
+            }
+            System.out.println("Finished drawing subshapes for "+name);
+        }
     }
 
     public String toString(){
-        if(initialised)
             return name+":[("+start.getX()+","+start.getY()+","+start.getZ()+"),("+
                     +end.getX()+","+end.getY()+","+end.getZ()+") "+radius+"]";
-        else
-            return "Cylinder not initialised";
     }
 
 }

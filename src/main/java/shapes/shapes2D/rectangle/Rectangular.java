@@ -15,7 +15,6 @@ public abstract class Rectangular extends Shapes2D {
 
     public Point getCoordinates(){
         return upperLeft;
-
     }
 
 }

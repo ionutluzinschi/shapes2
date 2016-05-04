@@ -1,6 +1,6 @@
 package shapes;
 
-import shapes.shape2DFactory.Shape2DFactory;
+import shapes.visitorPattern.DrawingPartsVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +21,14 @@ public abstract class Shape {
     public String toString(){
         return this.toString();
     }
-    public void setName(String name){
-        this.name=name;
-    }
+
     public String getName(){
         return name;
     }
 
+    public void setName(String name){
+        this.name=name;
+    }
 
     public void addSubShape(Shape sh){
         subShapes.add(sh);
@@ -39,10 +40,7 @@ public abstract class Shape {
         return subShapes;
     }
 
-    public void draw(){
-        System.out.println(this);
-        for(Shape sh:getSubShapes()) {
-            sh.draw();
-        }
-    }
+    public abstract void accept(DrawingPartsVisitor drawingPartVisitor);
+
+    public abstract void draw();
 }

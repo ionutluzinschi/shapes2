@@ -1,8 +1,12 @@
 package shapes.shapes2D.rectangle;
 
+import shapes.Exceptions.InvalidCoordinates;
+import shapes.Exceptions.InvalidValue;
+import shapes.Exceptions.NullObject;
 import shapes.Shape;
 import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
+import shapes.visitorPattern.DrawingPartsVisitor;
 
 /**
  * Created by V3790148 on 4/26/2016.
@@ -15,8 +19,10 @@ public class Rectangle extends Rectangular{
 
     public Rectangle(){
         name="Rectangle";
-        upperLeft= new Point(0,0);
-        lowerRight=new Point(5,5);
+        try {
+            upperLeft = new Point(0, 0);
+            lowerRight = new Point(5, 5);
+        } catch (InvalidCoordinates e) {}
         initialised=true;
         calculateLength();
         calculateWidth();
@@ -24,78 +30,104 @@ public class Rectangle extends Rectangular{
 
     public Rectangle(String name){
         this.name=name;
-        upperLeft= new Point(0,0);
-        lowerRight=new Point(5,5);
+        try {
+            upperLeft = new Point(0, 0);
+            lowerRight = new Point(5, 5);
+        } catch(InvalidCoordinates e){}
         initialised=true;
         calculateLength();
         calculateWidth();
     }
 
-    public Rectangle(double length,double width){
-        if(length>0 && width >0) {
+    public Rectangle(double length,double width) throws InvalidValue{
+        if(length<=0)
+            throw new InvalidValue(length);
+        if (width<=0)
+            throw new InvalidValue(length);
             name="Rectangle";
-            upperLeft=new Point(0,0);
-            lowerRight =new Point(length, width);
-            initialised=true;
+        try {
+            upperLeft = new Point(0, 0);
+            lowerRight = new Point(length, width);
+        }
+            catch(InvalidCoordinates e){ }
+           initialised=true;
            calculateLength();
            calculateWidth();
-        }
+
     }
     public Rectangle(Point x, Point y){
-        if(x.getX()>0 && x.getY()>0 && y.getX()>0 && y.getY()>0)
-        {
-            name="Rectangle";
-            upperLeft=x;
-            lowerRight=y;
-            initialised=true;
-           calculateLength();
-            calculateWidth();
-        }
+        name="Rectangle";
+        upperLeft=x;
+        lowerRight=y;
+        initialised=true;
+        calculateLength();
+        calculateWidth();
     }
+    public Rectangle(Point x, double y) throws InvalidValue{
+        name="Rectangle";
+        upperLeft=x;
+        if(y<=0)
+            throw new InvalidValue(y);
+        try{lowerRight=new Point(x.getX()+y,x.getY()+y);}
+        catch(InvalidCoordinates e){}
+        initialised=true;
+        calculateLength();
+        calculateWidth();
+    }
+
     public Rectangle(Point x, Point y,String name){
-        if(x.getX()>0 && x.getY()>0 && y.getX()>0 && y.getY()>0)
-        {
-            this.name=name;
-            upperLeft=x;
-            lowerRight=y;
-            initialised=true;
-            calculateLength();
-            calculateWidth();
-        }
+        this.name=name;
+        upperLeft=x;
+        lowerRight=y;
+        initialised=true;
+        calculateLength();
+        calculateWidth();
+
     }
 
-    public Rectangle(double length, double width,String name ){
-
-        if(length>0 && width >0) {
-            this.name=name;
-            upperLeft=new Point(0,0);
-            lowerRight=new Point(length, width);
-            initialised=true;
-            calculateLength();
-            calculateWidth();
+    public Rectangle(double length, double width,String name )throws InvalidValue{
+        if(length<=0)
+            throw new InvalidValue(length);
+        if (width<=0)
+            throw new InvalidValue(length);
+        this.name=name;
+        try {
+            upperLeft = new Point(0, 0);
+            lowerRight = new Point(length, width);
         }
+        catch(InvalidCoordinates e){ }
+        initialised=true;
+        calculateLength();
+        calculateWidth();
     }
 
+    public void accept(DrawingPartsVisitor drawingPartsVisitor){
+        drawingPartsVisitor.visit(this);
+    }
 
-    public void setCoordinates(double length, double width){
-        if(initialised){
-        if(length>0 && width >0) {
+    public void setCoordinates(double length, double width) throws NullObject,InvalidValue{
+        if(this.equals(null))
+            throw new NullObject();
+
+        if(length<=0)
+            throw new InvalidValue(length);
+        if (width<=0)
+            throw new InvalidValue(length);
             lowerRight.setCoordinates(length+upperLeft.getX(), width+upperLeft.getY());
             calculateLength();
             calculateWidth();
+    }
 
-        }
-    }
-    }
-    public void setCoordinates(Point x, Point y){
-        if(initialised) {
+    public void setCoordinates(Point x, Point y) throws NullObject{
+        if(this.equals(null))
+            throw new NullObject();
             if (x.getX() > 0 && x.getY() > 0 && y.getX() > 0 && y.getY() > 0) {
                 upperLeft = x;
                 lowerRight = y;
                 calculateLength();
                 calculateWidth();
             }
-        }
+
     }
 
     private void calculateLength(){
@@ -112,20 +144,26 @@ public class Rectangle extends Rectangular{
         else
             width=Math.abs(lowerRight.getY()-upperLeft.getY());
     }
-    public double getWidth(){
-        if(initialised){
+    public double getWidth() throws NullObject{
+        if(this.equals(null))
+            throw new NullObject();
           return width;
+
+    }
+
+    public void draw(){
+        System.out.println("Drawing "+name+" with length of "+length+" and a width of "+ width);
+        if(getSubShapes().size()>0) {
+            System.out.println("Drawing subshapes: ");
+            for (Shape sh : getSubShapes()) {
+                sh.draw();
+            }
+            System.out.println("Finished drawing subshapes for "+name);
         }
-        else
-            return 0;
     }
 
     public String toString(){
-        if(this.initialised)
-            return name+":[("+upperLeft.getX()+","+upperLeft.getY()+"),("+lowerRight.getX()+"),("+lowerRight.getY()+")]";
-
-        else
-             return "Rectangle not initialised";
+        return name+":[("+upperLeft.getX()+","+upperLeft.getY()+"),("+lowerRight.getX()+"),("+lowerRight.getY()+")]";
 
     }
 
