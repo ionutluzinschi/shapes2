@@ -9,6 +9,10 @@ import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
 import shapes.visitorPattern.DrawingPartsVisitor;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
+
 /**
  * Created by V3790148 on 4/26/2016.
  */
@@ -56,6 +60,9 @@ public class Polygon extends Shapes2D {
         initialised=true;
     }
 
+    public List getPoints(){
+        return list;
+    }
     public void accept(DrawingPartsVisitor drawingPartsVisitor){
         drawingPartsVisitor.visit(this);
     }
@@ -70,6 +77,8 @@ public class Polygon extends Shapes2D {
             System.out.println("Finished drawing subshapes for "+name);
         }
     }
+
+
 
     public String toString(){
         return name+":"+list.toString();

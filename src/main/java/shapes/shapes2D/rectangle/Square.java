@@ -13,8 +13,9 @@ import shapes.shapes2D.base.Point;
 
     public class Square extends Rectangular {
 
-        private String name="Square";
+
         public Square(){
+            this.name="square";
             length=3;
             try{
             upperLeft=new Point(5,5);}
@@ -29,6 +30,7 @@ import shapes.shapes2D.base.Point;
             initialised=true;
     }
         public Square(double length) throws InvalidValue{
+            this.name="square";
             if(length<0)
                 throw new InvalidValue(length);
             this.length = length;
@@ -49,6 +51,7 @@ import shapes.shapes2D.base.Point;
 
 
         public Square(Point one, double length) throws InvalidValue{
+            this.name="square";
             if(length<0)
                throw new InvalidValue(length);
             upperLeft=one;

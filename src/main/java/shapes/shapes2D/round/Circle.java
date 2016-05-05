@@ -5,6 +5,10 @@ import shapes.Shape;
 import shapes.shapes2D.base.Point;
 import shapes.visitorPattern.DrawingPartsVisitor;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
+
 /**
  * Created by V3790148 on 4/26/2016.
  */
@@ -51,9 +55,13 @@ public class Circle extends Round {
         radius = z;
         initialised = true;
         }
+
     public void accept(DrawingPartsVisitor drawingPartsVisitor){
         drawingPartsVisitor.visit(this);
     }
+
+
+
 
     public void draw() {
         System.out.println("Drawing "+name+" with center at "+center);
@@ -68,7 +76,6 @@ public class Circle extends Round {
 
     public String toString(){
         return name+":[("+center.getX()+","+center.getY()+"),"+radius+"]";
-
 
     }
 

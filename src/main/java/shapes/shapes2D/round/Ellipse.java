@@ -10,6 +10,10 @@ import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
 import shapes.visitorPattern.DrawingPartsVisitor;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
+
 /**
  * Created by V3790148 on 4/26/2016.
  */
@@ -101,6 +105,7 @@ public class Ellipse extends Round {
             throw new NullObject();
         centerB = x;
     }
+
 
     public void draw() {
         System.out.println("Drawing " + name + ", with points at " + center + " " + centerB);

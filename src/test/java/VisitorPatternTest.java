@@ -1,5 +1,8 @@
 import org.junit.Test;
 import shapes.Shape;
+import shapes.shapes2D.rectangle.Rectangle;
+import shapes.shapes2D.rectangle.Square;
+import shapes.shapes2D.triangle.Triangle;
 import shapes.visitorPattern.Drawing;
 import shapes.visitorPattern.DrawingDisplayPartVisitor;
 
@@ -9,7 +12,11 @@ import shapes.visitorPattern.DrawingDisplayPartVisitor;
 public class VisitorPatternTest {
     @Test
     public void VisitorTest(){
-        Shape drawing=new Drawing();
+        Shape square=new Square();
+        square.addSubShape(new Triangle());
+        square.addSubShape(new Rectangle());
+
+        Shape drawing=new Drawing(square);
         drawing.accept(new DrawingDisplayPartVisitor());
 
     }

@@ -9,11 +9,16 @@ import shapes.shapes2D.base.Point;
 import shapes.Shape;
 import shapes.shapes2D.triangle.triangleMath.TriangleCalculator;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 /**
  * Created by V3790148 on 4/26/2016.
  */
 public class Triangle extends Shapes2D {
-
 
     private Point A;
     private Point B;
@@ -143,6 +148,7 @@ public class Triangle extends Shapes2D {
     public double getArea(){
         return myTCalculator.getArea();
     }
+
 
     public void draw(){
         System.out.println("Drawing "+name+" with an area of "+getArea());

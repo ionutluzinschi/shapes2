@@ -22,11 +22,9 @@ public class DrawingDisplayPartVisitor implements DrawingPartsVisitor{
     public void visit(Drawing drawing) {
         System.out.println("Displaying drawing.");
     }
-
     public void visit(Square square) {
         square.draw();
     }
-
     public void visit(Circle circle) {
         circle.draw();
     }
