@@ -27,7 +27,7 @@ import javax.json.JsonObjectBuilder;
  * Created by v3790148 on 5/5/2016.
  */
 public class JSONBuilder {
-
+  
 
     Shape shape;
     public JSONBuilder(Shape shape){
