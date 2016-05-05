@@ -16,7 +16,7 @@ public class JSONTest {
 
     @Test
     public void JSONTest() throws  FileNotFoundException{
-        Shape triangle=new Triangle();
+        Shape triangle=new Triangle(); 
         Shape square=new Square();
         Shape circle=new Circle();
 
