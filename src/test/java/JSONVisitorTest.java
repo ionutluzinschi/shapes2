@@ -33,7 +33,7 @@ public class JSONVisitorTest {
         myObject.add("drawing",jsonVisitor.getJsonObject());
 
         try{
-        OutputStream os = new FileOutputStream("jsonDrawing.txt");
+        OutputStream os = new FileOutputStream("jsonDrawing2.txt");
         JsonWriter jsonWriter = Json.createWriter(os);
         jsonWriter.writeObject(myObject.build());
         jsonWriter.close();}
