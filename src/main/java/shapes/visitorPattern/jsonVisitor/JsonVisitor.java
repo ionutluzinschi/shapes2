@@ -25,7 +25,7 @@ import javax.json.JsonObjectBuilder;
  */
 public class JsonVisitor implements Visitor {
 
-    JsonObjectBuilder jsonObject=Json.createObjectBuilder();
+    private JsonObjectBuilder jsonObject=Json.createObjectBuilder();
 
     public void visit(Drawing drawing){
     }
