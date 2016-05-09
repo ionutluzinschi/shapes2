@@ -18,6 +18,7 @@ import shapes.visitorPattern.Drawing;
 import shapes.visitorPattern.Visitor;
 
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 
 /**
@@ -32,58 +33,141 @@ public class JsonVisitor implements Visitor {
     public void visit(Shape shape){
     }
     public void visit(Square square){
-        JSONBuilder builder=new JSONBuilder(square);
-        jsonObject.add(square.getName(),builder.getJsonObject());
+        JsonObjectBuilder coordinates=Json.createObjectBuilder();
+        JsonArrayBuilder points=Json.createArrayBuilder();
+       jsonObject.add("name",square.getName());
+        jsonObject.add("length",square.getLength());
+        jsonObject.add("area",square.getArea());
+        points.add(square.getCoordinates().getX());
+        points.add(square.getCoordinates().getY());
+        jsonObject.add("coordinates",coordinates);
+        JsonArrayBuilder subShapesBuilder=Json.createArrayBuilder();
+        if(square.getSubShapes().size()>0) {
+            for (Shape sh : square.getSubShapes())
+                subShapesBuilder.add(sh.getJsonObject());
+            jsonObject.add("subshapes",subShapesBuilder);
+        }
+
     }
     public void visit(Circle circle){
-        JSONBuilder builder=new JSONBuilder(circle);
-        jsonObject.add(circle.getName(),builder.getJsonObject());
+        jsonObject.add("name",circle.getName());
+
+        JsonArrayBuilder points=Json.createArrayBuilder();
+        jsonObject.add("area",circle.getArea());
+        jsonObject.add("radius",circle.getRadius());
+        points.add(circle.getCenter().getX());
+        points.add(circle.getCenter().getY());
+        jsonObject.add("Center",points);
+        JsonArrayBuilder subShapesBuilder=Json.createArrayBuilder();
+        if(circle.getSubShapes().size()>0) {
+            for (Shape sh : circle.getSubShapes())
+                subShapesBuilder.add(sh.getJsonObject());
+            jsonObject.add("subshapes",subShapesBuilder);
+        }
+
     }
     public void visit(Triangle triangle){
-        JSONBuilder builder=new JSONBuilder(triangle);
-        jsonObject.add(triangle.getName(),builder.getJsonObject());
+        jsonObject.add("name",triangle.getName());
+        JsonObjectBuilder coordinates=Json.createObjectBuilder();
+        JsonArrayBuilder points=Json.createArrayBuilder();
+        jsonObject.add("area",triangle.getArea());
+        points.add(triangle.getA().getX());
+        points.add(triangle.getA().getY());
+        coordinates.add("PointA",points);
+        points.add(triangle.getB().getX());
+        points.add(triangle.getB().getY());
+        coordinates.add("PointB",points);
+        points.add(triangle.getC().getX());
+        points.add(triangle.getC().getY());
+        coordinates.add("PointC",points);
+        jsonObject.add("coordinates",coordinates);
+        JsonArrayBuilder subShapesBuilder=Json.createArrayBuilder();
+        if(triangle.getSubShapes().size()>0) {
+            for (Shape sh : triangle.getSubShapes())
+                subShapesBuilder.add(sh.getJsonObject());
+            jsonObject.add("subshapes",subShapesBuilder);
+        }
+                
     }
     public void visit(Rectangle rectangle){
-        JSONBuilder builder=new JSONBuilder(rectangle);
-        jsonObject.add(rectangle.getName(),builder.getJsonObject());
-    }
-    public void visit(Pyramid pyramid){
-        JSONBuilder builder=new JSONBuilder(pyramid);
-        jsonObject.add(pyramid.getName(),builder.getJsonObject());
-    }
-    public void visit(Polygon polygon){
-        JSONBuilder builder=new JSONBuilder(polygon);
-        jsonObject.add(polygon.getName(),builder.getJsonObject());
-    }
-    public void visit(Ellipse ellipse){
-        JSONBuilder builder=new JSONBuilder(ellipse);
-        jsonObject.add(ellipse.getName(),builder.getJsonObject());
-    }
-    public void visit(Cube cube){
-        JSONBuilder builder=new JSONBuilder(cube);
-        jsonObject.add(cube.getName(),builder.getJsonObject());
-    }
-    public void visit(Cuboid cuboid){
-        JSONBuilder builder=new JSONBuilder(cuboid);
-        jsonObject.add(cuboid.getName(),builder.getJsonObject());
-    }
-    public void visit(SquarePyramid squarePyramid){
-        JSONBuilder builder=new JSONBuilder(squarePyramid);
-        jsonObject.add(squarePyramid.getName(),builder.getJsonObject());
-    }
-    public void visit(Cone cone){
-        JSONBuilder builder=new JSONBuilder(cone);
-        jsonObject.add(cone.getName(),builder.getJsonObject());
-    }
-    public void visit(Cylinder cylinder){
-        JSONBuilder builder=new JSONBuilder(cylinder);
-        jsonObject.add(cylinder.getName(),builder.getJsonObject());
-    }
-    public void visit(Sphere sphere){
-        JSONBuilder builder=new JSONBuilder(sphere);
-        jsonObject.add(sphere.getName(),builder.getJsonObject());
+        JsonObjectBuilder coordinates=Json.createObjectBuilder();
+        JsonArrayBuilder points=Json.createArrayBuilder();
+        jsonObject.add("name",rectangle.getName());
+        jsonObject.add("length",rectangle.getLength());
+        jsonObject.add("width",rectangle.getWidth());
+        jsonObject.add("area",rectangle.getArea());
+        points.add(rectangle.getCoordinates().getX());
+        points.add(rectangle.getCoordinates().getY());
+        jsonObject.add("upperLeft",coordinates);
+        JsonArrayBuilder subShapesBuilder=Json.createArrayBuilder();
+        if(rectangle.getSubShapes().size()>0) {
+            for (Shape sh : rectangle.getSubShapes())
+                subShapesBuilder.add(sh.getJsonObject());
+            jsonObject.add("subshapes",subShapesBuilder);
+        }
     }
 
+    public void visit(Polygon polygon){
+        jsonObject.add("name",polygon.getName());
+        JsonObjectBuilder coordinates=Json.createObjectBuilder();
+        JsonArrayBuilder points=Json.createArrayBuilder();
+        //  for(Point pts: (((Polygon) shape).getPoints())) {
+        //        points.add(pts.getX());
+        //        points.add(pts.getY());
+        //        coordinates.add("",points);
+        //     }
+
+        jsonObject.add("coordinates",coordinates);
+        JsonArrayBuilder subShapesBuilder=Json.createArrayBuilder();
+        if(polygon.getSubShapes().size()>0) {
+            for (Shape sh : polygon.getSubShapes())
+                subShapesBuilder.add(sh.getJsonObject());
+            jsonObject.add("subshapes",subShapesBuilder);
+        }
+    }
+
+    public void visit(Ellipse ellipse){
+        jsonObject.add("name",ellipse.getName());
+        JsonObjectBuilder coordinates=Json.createObjectBuilder();
+        JsonArrayBuilder points=Json.createArrayBuilder();
+        jsonObject.add("area",ellipse.getArea());
+        jsonObject.add("length",ellipse.getRadius());
+        points.add(ellipse.getCenter().getX());
+        points.add(ellipse.getCenter().getY());
+        coordinates.add("PointA",points);
+        points.add(ellipse.getCenterB().getX());
+        points.add(ellipse.getCenterB().getY());
+        coordinates.add("PointB",points);
+        jsonObject.add("coordinates",coordinates);
+        JsonArrayBuilder subShapesBuilder=Json.createArrayBuilder();
+        if(ellipse.getSubShapes().size()>0) {
+            for (Shape sh : ellipse.getSubShapes())
+                subShapesBuilder.add(sh.getJsonObject());
+            jsonObject.add("subshapes",subShapesBuilder);
+        }
+
+    }
+    public void visit(Pyramid pyramid){
+
+    }
+    public void visit(Cube cube){
+
+    }
+    public void visit(Cuboid cuboid){
+
+    }
+    public void visit(SquarePyramid squarePyramid){
+
+    }
+    public void visit(Cone cone){
+
+    }
+    public void visit(Cylinder cylinder){
+
+    }
+    public void visit(Sphere sphere){
+
+    }
     public JsonObjectBuilder getJsonObject(){
         return jsonObject;
     }
