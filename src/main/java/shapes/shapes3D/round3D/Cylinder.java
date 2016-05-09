@@ -4,7 +4,8 @@ import shapes.Exceptions.Invalid3DCoordinates;
 import shapes.Exceptions.NullObject;
 import shapes.Shape;
 import shapes.shapes3D.base.Point3D;
-import shapes.visitorPattern.DrawingPartsVisitor;
+import shapes.visitorPattern.Visitor;
+
 
 /**
  * Created by V3790148 on 4/27/2016.
@@ -44,8 +45,8 @@ public class Cylinder extends Round3D{
             this.end = end;
             initialised = true;
     }
-    public void accept(DrawingPartsVisitor drawingPartsVisitor){
-        drawingPartsVisitor.visit(this);
+    public void accept( Visitor partsVisitor){
+        partsVisitor.visit(this);
     }
 
     public Point3D getEnd(){

@@ -4,9 +4,8 @@ import shapes.Exceptions.InvalidCoordinates;
 import shapes.Exceptions.InvalidValue;
 import shapes.Exceptions.NullObject;
 import shapes.Shape;
-import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
-import shapes.visitorPattern.DrawingPartsVisitor;
+import shapes.visitorPattern.Visitor;
 
 /**
  * Created by V3790148 on 4/26/2016.
@@ -101,8 +100,9 @@ public class Rectangle extends Rectangular{
         calculateWidth();
     }
 
-    public void accept(DrawingPartsVisitor drawingPartsVisitor){
-        drawingPartsVisitor.visit(this);
+
+    public void accept( Visitor partsVisitor){
+        partsVisitor.visit(this);
     }
 
     public void setCoordinates(double length, double width) throws NullObject,InvalidValue{
@@ -144,9 +144,7 @@ public class Rectangle extends Rectangular{
         else
             width=Math.abs(lowerRight.getY()-upperLeft.getY());
     }
-    public double getWidth() throws NullObject{
-        if(this.equals(null))
-            throw new NullObject();
+    public double getWidth(){
           return width;
 
     }

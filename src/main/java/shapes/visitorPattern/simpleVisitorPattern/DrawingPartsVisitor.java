@@ -1,4 +1,4 @@
-package shapes.visitorPattern;
+package shapes.visitorPattern.simpleVisitorPattern;
 
 import shapes.shapes2D.rectangle.Polygon;
 import shapes.shapes2D.rectangle.Rectangle;
@@ -13,6 +13,7 @@ import shapes.shapes3D.pyramids.SquarePyramid;
 import shapes.shapes3D.round3D.Cone;
 import shapes.shapes3D.round3D.Cylinder;
 import shapes.shapes3D.round3D.Sphere;
+import shapes.visitorPattern.Drawing;
 
 
 /**

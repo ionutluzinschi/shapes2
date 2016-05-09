@@ -1,5 +1,4 @@
 import org.junit.Test;
-import shapes.JSONBuilder;
 import shapes.Shape;
 import shapes.shapes2D.rectangle.Square;
 import shapes.shapes2D.round.Circle;
@@ -7,7 +6,6 @@ import shapes.shapes2D.triangle.Triangle;
 
 import javax.json.*;
 import java.io.*;
-import java.util.Map;
 
 /**
  * Created by v3790148 on 5/5/2016.
@@ -16,7 +14,7 @@ public class JSONTest {
 
     @Test
     public void JSONTest() throws  FileNotFoundException{
-        Shape triangle=new Triangle(); 
+        Shape triangle=new Triangle();
         Shape square=new Square();
         Shape circle=new Circle();
 

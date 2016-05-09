@@ -23,8 +23,8 @@ public abstract class AreaCalculator {
         if(shape instanceof Square)
             return ((Square) shape).getLength()*((Square) shape).getLength();
         else if(shape instanceof Rectangle)
-            try{ return  ((Rectangle) shape).getLength()*((Rectangle) shape).getWidth();}
-                       catch(NullObject e){System.out.println(e); }
+            return  ((Rectangle) shape).getLength()*((Rectangle) shape).getWidth();
+
         else if(shape instanceof Polygon)
             return -1;
          else if(shape instanceof Circle)

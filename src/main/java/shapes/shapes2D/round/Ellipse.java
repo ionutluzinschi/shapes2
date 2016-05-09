@@ -1,18 +1,13 @@
 package shapes.shapes2D.round;
 
-import org.omg.CORBA.DynAnyPackage.Invalid;
 import shapes.Exceptions.InvalidCoordinates;
 import shapes.Exceptions.InvalidRadius;
 import shapes.Exceptions.NullObject;
 import shapes.Exceptions.OutOfBounds;
 import shapes.Shape;
-import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
-import shapes.visitorPattern.DrawingPartsVisitor;
+import shapes.visitorPattern.Visitor;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
 
 /**
  * Created by V3790148 on 4/26/2016.
@@ -84,8 +79,8 @@ public class Ellipse extends Round {
             this.radius = 5;
         initialised = true;
     }
-    public void accept(DrawingPartsVisitor drawingPartsVisitor){
-        drawingPartsVisitor.visit(this);
+    public void accept( Visitor partsVisitor){
+        partsVisitor.visit(this);
     }
 
 

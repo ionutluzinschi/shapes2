@@ -1,8 +1,6 @@
-package shapes;
+package shapes.visitorPattern.jsonVisitor;
 
-import org.json.simple.JSONObject;
-import shapes.Exceptions.NullObject;
-import shapes.shapes2D.base.Point;
+import shapes.Shape;
 import shapes.shapes2D.rectangle.Polygon;
 import shapes.shapes2D.rectangle.Rectangle;
 import shapes.shapes2D.rectangle.Square;
@@ -16,8 +14,6 @@ import shapes.shapes3D.pyramids.SquarePyramid;
 import shapes.shapes3D.round3D.Cone;
 import shapes.shapes3D.round3D.Cylinder;
 import shapes.shapes3D.round3D.Sphere;
-import shapes.visitorPattern.Drawing;
-import shapes.visitorPattern.DrawingDisplayPartVisitor;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -27,15 +23,14 @@ import javax.json.JsonObjectBuilder;
  * Created by v3790148 on 5/5/2016.
  */
 public class JSONBuilder {
-  
+
 
     Shape shape;
     public JSONBuilder(Shape shape){
        this.shape=shape;
     }
-   
 
-    public JsonObjectBuilder getJsonObject() throws NullObject{
+    public JsonObjectBuilder getJsonObject(){
         if(shape==null){
             return null;
         }
@@ -67,7 +62,7 @@ public class JSONBuilder {
         else if(shape instanceof Circle){
 
                 JsonObjectBuilder shapeBuilder= Json.createObjectBuilder();
-                shapeBuilder.add("name",shape.name);
+                shapeBuilder.add("name",shape.getName());
 
                 JsonArrayBuilder points=Json.createArrayBuilder();
                 shapeBuilder.add("area",((Circle) shape).getArea());

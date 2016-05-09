@@ -1,17 +1,9 @@
 package shapes;
 
-import jdk.nashorn.api.scripting.JSObject;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.json.simple.JSONObject;
-import shapes.Exceptions.NullObject;
-import shapes.visitorPattern.DrawingPartsVisitor;
+import shapes.visitorPattern.jsonVisitor.JSONBuilder;
+import shapes.visitorPattern.Visitor;
 
 import javax.json.*;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,22 +40,20 @@ public abstract class Shape{
     }
 
     //visitor pattern
-    public abstract void accept(DrawingPartsVisitor drawingPartVisitor);
+   // public abstract void accept(DrawingPartsVisitor drawingPartVisitor);
+    public abstract void accept(Visitor partVisitor);
 
     //shape to json
     public JsonObjectBuilder getJsonObject(){
 
        JsonObjectBuilder myBuild= Json.createObjectBuilder();
        JSONBuilder myBuilder=new JSONBuilder(this);
-        try {
-            myBuild=myBuilder.getJsonObject();
-        }
-        catch(NullObject e){e.printStackTrace();}
+        myBuild=myBuilder.getJsonObject();
 
- 
         return myBuild;
 
     }
+
 
     public abstract void draw();
     public String toString(){

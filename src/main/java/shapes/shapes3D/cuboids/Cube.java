@@ -2,11 +2,9 @@ package shapes.shapes3D.cuboids;
 
 import shapes.Exceptions.InvalidValue;
 import shapes.Shape;
-import shapes.shapes2D.base.Point;
-import shapes.shapes2D.rectangle.Square;
-import shapes.shapes3D.Shapes3D;
 import shapes.shapes3D.base.Point3D;
-import shapes.visitorPattern.DrawingPartsVisitor;
+import shapes.visitorPattern.Visitor;
+
 
 /**
  * Created by V3790148 on 4/27/2016.
@@ -46,8 +44,8 @@ public class Cube extends Cuboids {
     }
 
 
-    public void accept(DrawingPartsVisitor drawingPartsVisitor){
-        drawingPartsVisitor.visit(this);
+    public void accept( Visitor partsVisitor){
+        partsVisitor.visit(this);
     }
     public void draw(){
         System.out.println("Drawing "+name+" with a length of "+length);

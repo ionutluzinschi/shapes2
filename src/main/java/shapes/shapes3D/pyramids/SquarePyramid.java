@@ -3,9 +3,9 @@ package shapes.shapes3D.pyramids;
 import shapes.Exceptions.Invalid3DCoordinates;
 import shapes.Exceptions.InvalidValue;
 import shapes.Shape;
-import shapes.shapes2D.rectangle.Square;
 import shapes.shapes3D.base.Point3D;
-import shapes.visitorPattern.DrawingPartsVisitor;
+import shapes.visitorPattern.Visitor;
+
 
 /**
  * Created by V3790148 on 4/27/2016.
@@ -52,8 +52,8 @@ public class SquarePyramid extends Pyramids {
             initialised = true;
     }
 
-    public void accept(DrawingPartsVisitor drawingPartsVisitor){
-        drawingPartsVisitor.visit(this);
+    public void accept( Visitor partsVisitor){
+        partsVisitor.visit(this);
     }
     public void draw(){
         System.out.println("Drawing "+name+" with a length of "+length+" and the tip at "+tip);

@@ -1,27 +1,26 @@
 package shapes.visitorPattern;
 
 import shapes.Shape;
-import shapes.shapes2D.rectangle.Square;
-import shapes.shapes2D.round.Circle;
-import shapes.shapes2D.triangle.Triangle;
-
-import java.util.List;
 
 /**
  * Created by V3790148 on 5/4/2016.
  */
 public class Drawing extends Shape {
     Shape[] parts;
+    Shape drawing;
     public Drawing(Shape shape){
+        drawing=shape;
         parts=shape.getSubShapes().toArray(new Shape[shape.getSubShapes().size()]);
     }
-    @Override
-    public void accept(DrawingPartsVisitor drawingPartVisitor) {
-        drawingPartVisitor.visit(this);
+
+
+    public void accept (Visitor jsonPartVisitor){
+        jsonPartVisitor.visit(drawing);
         for (int i = 0; i < parts.length; i++) {
-            parts[i].accept(drawingPartVisitor);
+            parts[i].accept(jsonPartVisitor);
         }
     }
+
     public void draw(){}
 
 
