@@ -4,7 +4,10 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.junit.Test;
+import shapes.Exceptions.InvalidCoordinates;
 import shapes.Shape;
+import shapes.shapes2D.rectangle.Square;
+import shapes.shapes2D.round.Circle;
 import shapes.shapes2D.triangle.Triangle;
 
 import java.io.File;
@@ -16,11 +19,13 @@ import java.io.IOException;
 public class JacksonTester {
 
     @Test
-    public void JacksonTester(){
+    public void JacksonTester() throws InvalidCoordinates{
         JacksonTester tester= new JacksonTester();
 
         try{
             Shape triangle=new Triangle();
+            triangle.addSubShape(new Square());
+            triangle.addSubShape(new Circle());
 
             tester.writeJSON(triangle);
         }

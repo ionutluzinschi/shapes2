@@ -1,4 +1,5 @@
 import org.junit.Test;
+import shapes.Exceptions.InvalidCoordinates;
 import shapes.Shape;
 import shapes.shapes2D.rectangle.Rectangle;
 import shapes.shapes2D.rectangle.Square;
@@ -11,7 +12,7 @@ import shapes.visitorPattern.simpleVisitorPattern.DrawingDisplayPartVisitor;
  */
 public class VisitorPatternTest {
     @Test
-    public void VisitorTest(){
+    public void VisitorTest() throws InvalidCoordinates{
         Shape square=new Square();
         square.addSubShape(new Triangle());
         square.addSubShape(new Rectangle());

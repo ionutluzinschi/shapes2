@@ -1,13 +1,15 @@
 import org.junit.Test;
+import shapes.Exceptions.InvalidCoordinates;
 import shapes.shapes2D.rectangle.Square;
 import shapes.shapes2D.round.Circle;
 import shapes.shapes2D.triangle.Triangle;
 import shapes.visitorPattern.Drawing;
-import shapes.visitorPattern.jsonVisitor.JsonVisitor;
+import shapes.visitorPattern.JsonVisitor;
 
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
+import javax.json.stream.JsonGenerator;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,7 +20,7 @@ import java.io.OutputStream;
  */
 public class JSONVisitorTest {
     @Test
-    public void JsonVisitorTest(){
+    public void JsonVisitorTest() throws InvalidCoordinates{
         Square square=new Square();
         Triangle triangle=new Triangle();
         Circle circle=new Circle();
@@ -32,8 +34,9 @@ public class JSONVisitorTest {
         myDrawing.accept(jsonVisitor);
         myObject.add("drawing",jsonVisitor.getJsonObject());
 
+
         try{
-        OutputStream os = new FileOutputStream("jsonDrawing2.txt");
+        OutputStream os = new FileOutputStream("jsonDrawing3.txt");
         JsonWriter jsonWriter = Json.createWriter(os);
         jsonWriter.writeObject(myObject.build());
         jsonWriter.close();}

@@ -1,5 +1,6 @@
 package shapes.shapes2D.round;
 
+import shapes.Exceptions.InvalidRadius;
 import shapes.shapes2D.Shapes2D;
 import shapes.shapes2D.base.Point;
 
@@ -14,21 +15,18 @@ public abstract class Round extends Shapes2D {
             return radius;
     }
 
-    public void setRadius(double z){
-        if(initialised){
-            if(radius>0)
+    public void setRadius(double z) throws InvalidRadius{
+        if(radius<0)
+            throw new InvalidRadius(z);
                 radius=z;
-        }
     }
 
     public Point getCenter() {
         return center;
     }
     public void setCenter(Point x) {
-        if (initialised) {
-            if (x.getX() > 0 && x.getY() > 0 &&  radius > x.getX() && radius > x.getY())
-                center = x;
-        }
+        center = x;
+
     }
 
 }

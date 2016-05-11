@@ -2,7 +2,7 @@ package shapes.shapes3D.round3D;
 
 import shapes.Exceptions.Invalid3DCoordinates;
 import shapes.Exceptions.InvalidRadius;
-import shapes.Exceptions.NullObject;
+import shapes.Exceptions.OutOfBounds;
 import shapes.Shape;
 import shapes.shapes3D.base.Point3D;
 import shapes.visitorPattern.Visitor;
@@ -19,18 +19,7 @@ public class Sphere extends Round3D {
         }
         catch(Invalid3DCoordinates e){}
         radius=0;
-        initialised=true;
         name="Sphere";
-    }
-
-    public Sphere(String name){
-        this.name=name;
-        try {
-            start = new Point3D(5, 5, 5);
-        }
-        catch(Invalid3DCoordinates e){}
-        radius=0;
-        initialised=true;
     }
 
     public Sphere(Point3D x, double radius) throws InvalidRadius{
@@ -38,28 +27,18 @@ public class Sphere extends Round3D {
             throw new InvalidRadius(radius);
             start = x;
             this.radius = radius;
-            initialised = true;
             name="Sphere";
         }
 
-    public Sphere(Point3D x, double radius,String name) throws InvalidRadius{
-        if(radius<=0 || radius >x.getX() || radius> x.getZ()||radius>x.getY())
-            throw new InvalidRadius(radius);
-            this.name=name;
-            start = x;
-            this.radius = radius;
-            initialised = true;
-
-    }
     public void accept( Visitor partsVisitor){
         partsVisitor.visit(this);
     }
 
-    public void setRadius(double radius) throws NullObject,InvalidRadius{
-        if(this.equals(null))
-            throw new NullObject();
-        if(radius<=0 || radius >start.getX() || radius> start.getZ()||radius>start.getY())
+    public void setRadius(double radius) throws InvalidRadius, OutOfBounds{
+        if(radius<=0 )
             throw new InvalidRadius(radius);
+        if(radius >start.getX() || radius> start.getZ()||radius>start.getY())
+            throw new OutOfBounds(radius,start);
         this.radius=radius;
         }
 

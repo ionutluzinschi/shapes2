@@ -25,17 +25,7 @@ public class Polygon extends Shapes2D {
             list.add(new Point(2, 2));
             list.add(new Point(3, 7));
         } catch(InvalidCoordinates e) {}
-        initialised=true;
-    }
 
-    public Polygon(String name){
-        this.name=name;
-        try {
-            list.add(new Point(0, 0));
-            list.add(new Point(2, 2));
-            list.add(new Point(3, 7));
-        } catch(InvalidCoordinates e) {}
-        initialised=true;
     }
 
     public Polygon(Point... points){
@@ -45,21 +35,12 @@ public class Polygon extends Shapes2D {
                 list.add(x);
         }
         name="Polygon";
-        initialised=true;
-    }
-    public Polygon(String name, Point... points){
-        for(Point x:points)
-        {
-            if(x.getX()>=0 && x.getY()>=0)
-                list.add(x);
-        }
-        this.name=name;
-        initialised=true;
-    }
 
+    }
     public List getPoints(){
         return list;
     }
+
     public void accept( Visitor partsVisitor){
         partsVisitor.visit(this);
     }

@@ -16,13 +16,11 @@ public class Cube extends Cuboids {
         name="Cube";
         upperLeft=new Point3D();
         length=5;
-        initialised=true;
     }
     public Cube(String name){
         this.name=name;
         upperLeft=new Point3D();
         length=5;
-        initialised=true;
     }
 
     public Cube(Point3D x,double length) throws InvalidValue {
@@ -31,7 +29,6 @@ public class Cube extends Cuboids {
         upperLeft = x;
         name = "Cube";
         this.length = length;
-        initialised = true;
     }
 
     public Cube(Point3D x,double length,String name) throws InvalidValue {
@@ -40,7 +37,6 @@ public class Cube extends Cuboids {
             this.name = name;
             upperLeft = x;
             this.length = length;
-            initialised = true;
     }
 
 

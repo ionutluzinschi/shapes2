@@ -12,6 +12,7 @@ public abstract class Rectangular extends Shapes2D {
     public double getLength(){
         return length;
     }
+    public void setLength(double length){this.length=length;}
 
     public Point getCoordinates(){
         return upperLeft;

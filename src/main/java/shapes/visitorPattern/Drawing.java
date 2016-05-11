@@ -10,18 +10,18 @@ public class Drawing extends Shape {
     Shape drawing;
     public Drawing(Shape shape){
         drawing=shape;
-        parts=shape.getSubShapes().toArray(new Shape[shape.getSubShapes().size()]);
     }
 
 
-    public void accept (Visitor jsonPartVisitor){
-        jsonPartVisitor.visit(drawing);
-        for (int i = 0; i < parts.length; i++) {
-            parts[i].accept(jsonPartVisitor);
-        }
+    public void accept (Visitor partVisitor){
+        partVisitor.visit(drawing);
+        for(Shape sh:drawing.getSubShapes())
+          sh.accept(partVisitor);
     }
 
     public void draw(){}
-
+    public String toString(){
+        return "in drawing";
+    }
 
 }

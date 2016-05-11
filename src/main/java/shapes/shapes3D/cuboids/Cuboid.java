@@ -19,18 +19,8 @@ public class Cuboid extends Cuboids {
         length=5;
         width=5;
         height=5;
-        initialised=true;
         name="Cuboid";
     }
-    public Cuboid(String name){
-        this.name=name;
-        upperLeft=new Point3D();
-        length=5;
-        width=5;
-        height=5;
-        initialised=true;
-    }
-
     public Cuboid(Point3D upperLeft, double length, double width,double height) throws InvalidValue{
         if(width<=0)
           throw new InvalidValue(width);
@@ -43,23 +33,6 @@ public class Cuboid extends Cuboids {
         this.length = length;
         this.width = width;
         this.height = height;
-        initialised = true;
-    }
-
-    public Cuboid(Point3D upperLeft, double length, double width,double height,String name) throws InvalidValue {
-        if(width<=0)
-            throw new InvalidValue(width);
-        if(length<=0)
-            throw new InvalidValue(length);
-        if(height<=0)
-            throw new InvalidValue(height);
-        this.name = name;
-        this.upperLeft = upperLeft;
-        this.length = length;
-        this.width = width;
-        this.height = height;
-        initialised = true;
-
     }
     public void accept( Visitor partsVisitor){
         partsVisitor.visit(this);

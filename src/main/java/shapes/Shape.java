@@ -1,9 +1,8 @@
 package shapes;
 
-import shapes.visitorPattern.jsonVisitor.JSONBuilder;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import shapes.visitorPattern.Visitor;
-
-import javax.json.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,15 +10,11 @@ import java.util.List;
  * Created by V3790148 on 4/26/2016.
  */
 
-public abstract class Shape{
-
+public abstract class Shape implements Serializable{
     protected String name="shape";
-    protected boolean initialised=false;
-    List<Shape> subShapes=new ArrayList<Shape>();
 
-    public boolean getState(){
-        return initialised;
-    }
+    @JsonIgnore
+    protected List<Shape> subShapes=new ArrayList<Shape>();
 
     public String getName(){
         return name;
@@ -28,32 +23,19 @@ public abstract class Shape{
         this.name=name;
     }
 
-    //  Composite pattern
     public void addSubShape(Shape sh){
         subShapes.add(sh);
     }
     public void removeSubShape(Shape sh){
         subShapes.remove(sh);
     }
+
     public List<Shape> getSubShapes(){
         return subShapes;
     }
+    public double getArea(){ return AreaCalculator.calculateArea(this); }
 
-    //visitor pattern
-   // public abstract void accept(DrawingPartsVisitor drawingPartVisitor);
     public abstract void accept(Visitor partVisitor);
-
-    //shape to json
-    public JsonObjectBuilder getJsonObject(){
-
-       JsonObjectBuilder myBuild= Json.createObjectBuilder();
-       JSONBuilder myBuilder=new JSONBuilder(this);
-        myBuild=myBuilder.getJsonObject();
-
-        return myBuild;
-
-    }
-
 
     public abstract void draw();
     public String toString(){

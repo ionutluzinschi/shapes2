@@ -13,19 +13,7 @@ import java.io.*;
 public class JSONTest {
 
     @Test
-    public void JSONTest() throws  FileNotFoundException{
-        Shape triangle=new Triangle();
-        Shape square=new Square();
-        Shape circle=new Circle();
-
-        triangle.addSubShape(square);
-        triangle.addSubShape(circle);
-
-        System.out.println("Shape JSON String\n"+triangle.getJsonObject().build());
-        OutputStream os = new FileOutputStream("shapes.txt");
-        JsonWriter jsonWriter = Json.createWriter(os);
-        jsonWriter.writeObject(triangle.getJsonObject().build());
-        jsonWriter.close();
+    public void JSONTest(){
     }
 
 }

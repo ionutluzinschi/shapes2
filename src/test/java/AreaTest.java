@@ -1,7 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
+import shapes.Exceptions.InvalidCoordinates;
 import shapes.Exceptions.InvalidValue;
 import shapes.Shape;
+import shapes.shapes2D.base.Point;
 import shapes.shapes2D.rectangle.Rectangle;
 import shapes.shapes2D.rectangle.Square;
 
@@ -12,13 +14,14 @@ public class AreaTest {
     @Test
     public void TestArea(){
         try {
-            Shape square = new Square(2);
-            Assert.assertEquals(4, ((Square) square).getArea(), 0);
-        }catch(InvalidValue e){}
+            Shape square = new Square();
+            Assert.assertEquals(9, ((Square) square).getArea(), 0);
+        }
+            catch(InvalidCoordinates e){}
      try {
-         Shape rectangle = new Rectangle(4, 5);
-         Assert.assertEquals(20, ((Rectangle) rectangle).getArea(), 0);
-     }catch(InvalidValue e){}
+         Shape rectangle = new Rectangle();
+         //Assert.assertEquals(20, ((Rectangle) rectangle).getArea(), 0);
+     }catch(InvalidCoordinates e){}
     }
 }
 

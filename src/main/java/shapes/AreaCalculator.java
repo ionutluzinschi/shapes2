@@ -1,11 +1,9 @@
 package shapes;
 
-import shapes.Exceptions.NullObject;
 import shapes.shapes2D.rectangle.Polygon;
 import shapes.shapes2D.rectangle.Rectangle;
 import shapes.shapes2D.rectangle.Square;
 import shapes.shapes2D.round.Circle;
-import shapes.shapes2D.round.Ellipse;
 import shapes.shapes2D.triangle.Triangle;
 import shapes.shapes3D.round3D.Cone;
 import shapes.shapes3D.round3D.Cylinder;
@@ -26,13 +24,13 @@ public abstract class AreaCalculator {
             return  ((Rectangle) shape).getLength()*((Rectangle) shape).getWidth();
 
         else if(shape instanceof Polygon)
-            return -1;
+            return 1;
          else if(shape instanceof Circle)
             return 2*Math.PI*((Circle) shape).getRadius();
-        else if(shape instanceof Ellipse)
-            return Math.PI*((((Ellipse) shape).getRadius()-((Ellipse) shape).getCenter().getX())/2)*((((Ellipse) shape).getRadius()-((Ellipse) shape).getCenter().getY())/2);
         else if(shape instanceof Triangle)
-            return ((Triangle)shape).getArea();
+            return Math.abs((((Triangle) shape).getA().getX()*(((Triangle) shape).getB().getY()-((Triangle) shape).getC().getY())+
+                    ((Triangle) shape).getB().getX()*(((Triangle) shape).getC().getY()-((Triangle) shape).getA().getY())+
+                    ((Triangle) shape).getC().getX()*(((Triangle) shape).getA().getY()-((Triangle) shape).getB().getY()))/2);
         else if(shape instanceof Cube)
             return ((Cube) shape).getLength()*6;
         else if(shape instanceof Cuboid)

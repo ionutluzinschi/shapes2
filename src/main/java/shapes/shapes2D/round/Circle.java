@@ -15,18 +15,8 @@ public class Circle extends Round {
         try{
         center = new Point(50, 50);}
         catch (InvalidCoordinates e) {}
-
         radius = 3 * Math.PI;
-        initialised = true;
         name="Circle";
-    }
-    public Circle(String name) {
-        this.name=name;
-        try {
-            center = new Point(50, 50);
-        } catch(InvalidCoordinates e){}
-        radius = 3 * Math.PI;
-        initialised = true;
     }
 
     public Circle(Point x, double z) throws InvalidRadius,OutOfBounds {
@@ -34,24 +24,11 @@ public class Circle extends Round {
             throw new InvalidRadius(z);
 
         if (z > x.getX() && z > x.getY())
-            throw new OutOfBounds(z, x,x);
+            throw new OutOfBounds(z,x);
         center = x;
         radius = z;
-        initialised = true;
         name = "Circle";
-
     }
-
-    public Circle(Point x, double z,String name) throws InvalidRadius,OutOfBounds {
-        if(z<0)
-            throw new InvalidRadius(z);
-        if (z > x.getX() && z > x.getY())
-            throw new OutOfBounds(z,x,x);
-        this.name=name;
-        center = x;
-        radius = z;
-        initialised = true;
-        }
 
     public void accept( Visitor partsVisitor){
         partsVisitor.visit(this);

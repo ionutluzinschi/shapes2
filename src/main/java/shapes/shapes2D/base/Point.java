@@ -15,20 +15,10 @@ public class Point implements Comparable<Point>{
            this.x = x;
            this.y = y;
 
-
     }
     public Point(){
         x=5;
         y=5;
-    }
-
-    public Point(double x) throws InvalidCoordinates{
-        if (x < 0)
-                throw new InvalidCoordinates(x);
-            this.x = x;
-            this.y = x;
-
-
     }
 
     public double getX(){
@@ -46,29 +36,20 @@ public class Point implements Comparable<Point>{
         return y;
     }
 
-    public void setY(double y){
-        try {
-            if (y < 0)
+    public void setY(double y) throws  InvalidCoordinates{
+        if (y < 0)
                 throw new InvalidCoordinates(y);
             this.y = y;
 
-        }
-        catch(InvalidCoordinates e){
-            System.out.println(e);
-        }
+
     }
-    public void setCoordinates(double x,double y){
-        try {
-            if (x < 0 || y < 0)
+    public void setCoordinates(double x,double y) throws  InvalidCoordinates{
+        if (x < 0 || y < 0)
                 throw new InvalidCoordinates(x, y);
             this.x = x;
             this.y = y;
-        }
-        catch(InvalidCoordinates e){
-            System.out.println(e);
-        }
-
     }
+
 
     public int compareTo(Point x){
         if(this.getX()==x.getX() && this.getY()==x.getY())
@@ -78,8 +59,6 @@ public class Point implements Comparable<Point>{
         else
             return -1;
     }
-
-
 
     public void draw(){
         //

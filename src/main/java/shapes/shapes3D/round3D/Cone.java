@@ -2,7 +2,6 @@ package shapes.shapes3D.round3D;
 
 import shapes.Exceptions.Invalid3DCoordinates;
 import shapes.Exceptions.InvalidRadius;
-import shapes.Exceptions.NullObject;
 import shapes.Shape;
 import shapes.shapes3D.base.Point3D;
 import shapes.visitorPattern.Visitor;
@@ -14,25 +13,12 @@ import shapes.visitorPattern.Visitor;
 public class Cone extends Round3D {
     private Point3D tip;
 
-    public Cone(){
-        try {
-            start = new Point3D(5, 5, 5);
-            tip = new Point3D(5, 5, 0);
-        }catch (Invalid3DCoordinates e){}
+    public Cone() throws Invalid3DCoordinates{
+        start = new Point3D(5, 5, 5);
+        tip = new Point3D(5, 5, 0);
         radius=5;
-        initialised=true;
         name="Cone";
     }
-    public Cone(String name){
-        this.name=name;
-        try {
-            start = new Point3D(5, 5, 5);
-            tip = new Point3D(5, 5, 0);
-        }catch (Invalid3DCoordinates e){}
-        radius=5;
-        initialised=true;
-    }
-
     public Cone(Point3D start, Point3D tip, int radius) throws InvalidRadius {
        if(radius<0)
            throw new InvalidRadius(radius);
@@ -40,26 +26,13 @@ public class Cone extends Round3D {
         this.start = start;
         this.tip = tip;
         this.radius = radius;
-        initialised = true;
-        }
-
-    public Cone(Point3D start, Point3D tip, int radius,String name)throws InvalidRadius {
-        if(radius<0)
-            throw new InvalidRadius(radius);
-            this.name = name;
-            this.start = start;
-            this.tip = tip;
-            this.radius = radius;
-            initialised = true;
         }
 
     public void accept( Visitor partsVisitor){
         partsVisitor.visit(this);
     }
 
-    public void setRadius(int radius)throws NullObject,InvalidRadius {
-        if(this.equals(null))
-            throw new NullObject();
+    public void setRadius(int radius)throws InvalidRadius {
         if(radius<0)
             throw new InvalidRadius(radius);
             this.radius=radius;
@@ -73,10 +46,8 @@ public class Cone extends Round3D {
         return tip;
     }
 
-    public void setTip(Point3D tip) throws NullObject{
-        if(this.equals(null))
-            throw new NullObject();
-        this.tip=tip;
+    public void setTip(Point3D tip){
+          this.tip=tip;
     }
 
     public void draw(){
@@ -91,7 +62,6 @@ public class Cone extends Round3D {
     }
 
     public String toString(){
-
-            return name+":["+start.getX()+","+start.getY()+","+start.getZ()+") "+"("+tip.getX()+","+tip.getY()+","+tip.getZ()+")" +radius+"]";
+        return name+":["+start.getX()+","+start.getY()+","+start.getZ()+") "+"("+tip.getX()+","+tip.getY()+","+tip.getZ()+")" +radius+"]";
     }
 }

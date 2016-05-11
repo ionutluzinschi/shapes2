@@ -1,6 +1,5 @@
 package shapes.shapes3D.round3D;
 
-import shapes.Exceptions.NullObject;
 import shapes.shapes3D.Shapes3D;
 import shapes.shapes3D.base.Point3D;
 
@@ -18,10 +17,8 @@ public abstract class Round3D extends Shapes3D {
         return start;
     }
 
-    public void setStart(Point3D start) throws NullObject{
-        if(this.equals(null))
-            throw new NullObject();
-            this.start=start;
+    public void setStart(Point3D start) {
+        this.start=start;
     }
 
 }

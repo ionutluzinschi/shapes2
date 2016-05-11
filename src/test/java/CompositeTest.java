@@ -1,4 +1,5 @@
 import org.junit.Test;
+import shapes.Exceptions.InvalidCoordinates;
 import shapes.Shape;
 import shapes.shapes2D.rectangle.Rectangle;
 import shapes.shapes2D.rectangle.Square;
@@ -10,7 +11,7 @@ import shapes.shapes2D.triangle.Triangle;
  */
 public class CompositeTest {
     @Test
-    public void CompositeTest(){
+    public void CompositeTest() throws InvalidCoordinates{
         Shape square=new Square();
         Shape triangle=new Triangle();
         Shape rectangle=new Rectangle();
@@ -20,9 +21,7 @@ public class CompositeTest {
         square.addSubShape(triangle);
         square.addSubShape(rectangle);
         triangle.addSubShape(circle);
-        circle.addSubShape(rectangle);
-
         square.draw();
-        circle.draw();
+
       }
 }
